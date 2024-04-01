@@ -7,6 +7,8 @@ const NewsLetterForm = () => {
 
     const [email, setEmail] = useState('');
     const [error, setError] = useState('');
+    const [showModal, setShowModal] = useState(false);
+
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(event.target.value);
@@ -19,18 +21,23 @@ const NewsLetterForm = () => {
             setError('Valid email required.');
             return;
         }
-        setEmail('');
+        setShowModal(true);
+
     };
 
     const validateEmail = (email: string) => {
         return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
     };
 
-   
+    const closeModal = () => {
+        setShowModal(false);
+        setEmail('');
+    };
+
 
     return (
         <>
-        
+
             <form onSubmit={handleSubmit} className='flex flex-col gap-y-2'>
 
                 <span className='flex justify-between'>
@@ -54,7 +61,14 @@ const NewsLetterForm = () => {
 
                 <button type="submit" className='text-white font-bold bg-gray-600 py-4 rounded-lg hover:bg-orange-600'>Subscribe to monthly newsletter</button>
             </form>
-              
+            {showModal && (
+                <div className="fixed inset-0 flex items-center justify-center bg-gray-800">
+                    <div className="bg-white p-8 rounded-lg ">
+                        <p className="text-center text-green-600">Registration {email} completed! </p>
+                        <button onClick={closeModal} className="mt-4 bg-gray-600 text-white py-2 px-4 rounded-lg">Dismiss</button>
+                    </div>
+                </div>
+            )}
 
 
         </>
