@@ -16,8 +16,8 @@ const DetailTasksPage = async({params}) => {
         <div key={task.id}>
           <h2 className='text-3xl text-white'>{task.desc}</h2>
           <p className='text-3xl text-white'>Tohle je id stranky:{task.id}</p>
-          <DeleteTaskForm id={task.id} />
-          <EditTaskForm task={task} />
+          <DeleteTaskForm id={task.id} className=""/>
+          <EditTaskForm task={task} className=""/>
         </div>
       ))}
     </div>

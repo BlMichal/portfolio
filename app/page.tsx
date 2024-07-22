@@ -3,10 +3,10 @@ import TaskPage from "./tasks/page";
 
 export default function Home() {
   return (
-    <main className="bg-slate-500 min-h-screen p-5" >
+    <main className="bg-slate-900 min-h-screen p-5" >
       <Form />
       <TaskPage />
       {/*<NewsLetter />*/}
-    </main>
+          </main>
   );
 }

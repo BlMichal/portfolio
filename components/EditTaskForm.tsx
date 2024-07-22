@@ -4,7 +4,7 @@ import { updateTask } from "@/lib/actions"
 import { useState } from "react"
 
 
-export default function EditTodo({ task }) {
+export default function EditTodo({ task, className}) {
 
     const [showModal, setShowModal] = useState(false)
     const [formData, setFormData] = useState({        
@@ -14,8 +14,8 @@ export default function EditTodo({ task }) {
     const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value })
 
     return (
-        <div>
-            <button onClick={() => setShowModal(true)} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        <>
+            <button onClick={() => setShowModal(true)} className={`bg-white hover:bg-gray-400 text-black font-bold py-2 px-4 ${className}`}>
                 Edit
             </button>
             {showModal && (
@@ -46,6 +46,6 @@ export default function EditTodo({ task }) {
                     </div>
                 </div>
             )}
-        </div>
+        </>
     )
 }
