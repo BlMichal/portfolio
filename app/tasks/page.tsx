@@ -8,18 +8,18 @@ export default async function TaskPage() {
 
   return (
     <section className="mt-5">
-      <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-4 ">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 ">
         {tasks?.map((task) => (
           <div
             key={task.id}
-            className="w-full h-[250px] overflow-hidden bg-slate-800 flex flex-col justify-between"
-          >            
+            className="w-full h-[250px] overflow-hidden border-2 rounded-2xl flex flex-col justify-between shadow-2xl"
+          >
             <Link href={`/tasks/${task.id}`} className="h-full">
-              <h2 className="text-2xl text-white text-center">{task.desc}</h2>
+              <h2 className="text-2xl text-center">{task.desc}</h2>
             </Link>
-            <div className="flex justify-between">                        
-              <DeleteTaskForm id={task.id} className="w-full" />
-              <EditTaskForm task={task} className="w-full"/>
+            <div className="flex justify-around gap-1 p-2">
+              <DeleteTaskForm id={task.id} className="w-3/6" />
+              <EditTaskForm task={task} className="w-3/6" />
             </div>
           </div>
         ))}

@@ -10,7 +10,8 @@ export default function EditTodo({ id , className }) {
     
     return (
         <>
-            <button onClick={() => setShowModal(true)} className={`bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ${className}`}>
+            
+            <button onClick={() => setShowModal(true)} className={`bg-red-400 hover:bg-red-500 text-white font-bold py-2 px-4 border-2 ${className}`}>
                 DELETE
             </button>
             {showModal && (
