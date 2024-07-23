@@ -4,7 +4,7 @@ import Hero from "@/components/Hero";
 
 export default function Home() {
   return (
-    <main className="min-h-screen p-5" >
+    <main className="" >
       <Hero/>
       {/* <Form />
       <TaskPage /> */}
