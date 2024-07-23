@@ -1,13 +1,11 @@
-import Form from "@/components/Form";
-import TaskPage from "./tasks/page";
 import Hero from "@/components/Hero";
+import Header from "@/components/Header";
 
 export default function Home() {
   return (
-    <main className="" >
-      <Hero/>
-      {/* <Form />
-      <TaskPage /> */}
+    <main className="bg-hero-gradient" >
+      
+      <Hero/>      
       {/*<NewsLetter />*/}
           </main>
   );
