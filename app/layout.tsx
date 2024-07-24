@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="cs">
-      <body className={inter.className}>
+      <body className={`min-h-screen ${inter.className}`}>
       <Header/>
         {children}
       </body>
