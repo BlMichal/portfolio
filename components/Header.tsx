@@ -10,11 +10,13 @@ const Header = () => {
 
 
   return (
-    <header className="w-full bg-white z-50 flex justify-between items-center px-8">
-      <div>
-        <Image src="/logo.png" alt="Logo" width={50} height={20} />
+    <header className="max-w-7xl bg-white z-50 flex items-center justify-between px-8 mx-auto">
+      <div className="py-4">
+        <Image src="/logo.png" alt="Logo" width={50} height={50} />
       </div>
+          
       <Navbar/>
+      
     </header>
   );
 };

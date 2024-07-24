@@ -14,8 +14,8 @@ const Dropdown = () => {
   return ( 
     <>    
     {isClient ? <Link
-      href={'/tasks'} className='flex'>                 
-        <span className='whitespace-nowrap'>TASKS LIST</span>
+      href={'/tasks'} className='flex '>                 
+        <span className='whitespace-nowrap hover:text-black text-neutral-400'>TASKS LIST</span>
       </Link> : 'TASKS LIST'}     
     </>  
   )

@@ -5,20 +5,17 @@ import Dropdown from "./Dropdown";
 import { useState } from "react";
 
 const Navbar = () => {
+
   const [open, setOpen] = useState(false);
+
   return (
     <nav className="bg-white">
-      <div className="flex items-center font-medium justify-around">
-        <div className="z-50 p-5 md:w-auto w-full flex">
-          <button onClick={() => setOpen(!open)} className="md:hidden">
-            {open ? "X" : "☰"}
-          </button>
-        </div>
+      <div className="flex items-center font-medium">
         <ul className="md:flex hidden uppercase items-center gap-8 font-[Poppins]">
           <li>
             <Link
               href={"/"}
-              className="flex items-center relative hover:text-black text-neutral-400 group px-2 py-3 transition-all group "
+              className="flex items-center relative hover:text-black text-neutral-400 group px-2 py-3 transition-all group"
             >
               <span className="transition-all text-xl">Home</span>
               <span className=" transition-all group-hover:translate-y-0.5">
@@ -30,7 +27,37 @@ const Navbar = () => {
               </div>
             </Link>
           </li>
-          <div className="">
+          <li >
+            <Link
+              href={"/"}
+              className="flex items-center relative hover:text-black text-neutral-400 group px-2 py-3 transition-all group"
+            >
+              <span className="transition-all text-xl">About</span>
+              <span className=" transition-all group-hover:translate-y-0.5">
+                <ArrowDownToLine />
+              </span>
+              <div className="absolute top-12 w-auto hidden flex-col gap-4 px-4 rounded-lg bg-white py-3 shadow-md transition-all group-hover:flex z-[999]">
+                {/* DROPDOWN ITEMS */}
+                <Dropdown />
+              </div>
+            </Link>
+          </li>
+          <li className="mr-[2rem]">
+            <Link
+              href={"/"}
+              className="flex items-center relative hover:text-black text-neutral-400 group px-2 py-3 transition-all group"
+            >
+              <span className="transition-all text-xl">Projects</span>
+              <span className=" transition-all group-hover:translate-y-0.5">
+                <ArrowDownToLine />
+              </span>
+              <div className="absolute top-12 w-auto hidden flex-col gap-4 px-4 rounded-lg bg-white py-3 shadow-md transition-all group-hover:flex z-[999]">
+                {/* DROPDOWN ITEMS */}
+                <Dropdown />
+              </div>
+            </Link>
+          </li>
+          <div>
             <ul className="flex justify-center items-center gap-4">
               <li>
                 <button className="h-fit text-neutral-400 transition-all hover:text-black/80">
@@ -45,7 +72,7 @@ const Navbar = () => {
             </ul>
           </div>
         </ul>
-        
+
         {/* Mobile nav */}
         <ul
           className={`
@@ -83,6 +110,11 @@ const Navbar = () => {
             </ul>
           </div>
         </ul>
+        <div className="">
+          <button onClick={() => setOpen(!open)} className="md:hidden">
+            {open ? "X" : "☰"}
+          </button>
+        </div>
       </div>
     </nav>
   );
