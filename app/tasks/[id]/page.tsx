@@ -7,7 +7,9 @@ const DetailTasksPage = async({params}) => {
   const { data: tasks, error } = await supabase
     .from('tasks')
     .select('*')
-    .eq('id', params.id ) 
+    .eq('id', params.id )
+    
+
 
   return (
     <section>

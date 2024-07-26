@@ -24,5 +24,5 @@ export async function GET(request: NextRequest) {
   }
 
   // redirect the user to an error page with some instructions
-  redirect('/login?message=Chyba při ověřování hesla.')
+  redirect('/login?message=Sorry, something went wrong.')
 }

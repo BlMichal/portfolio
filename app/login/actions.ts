@@ -17,10 +17,11 @@ export async function login(formData: FormData) {
 
   const { error } = await supabase.auth.signInWithPassword(data);
 
-  if (error) {
-    console.log(error);
-    redirect("/login?message=Could not authenticate user");
+  if (error) { 
+            
+    redirect(`/login?message=${error?.message}`);
   }
+
 
   revalidatePath("/", "layout");
   redirect("/");
@@ -39,7 +40,7 @@ export async function signup(formData: FormData) {
   const { error } = await supabase.auth.signUp(data);
 
   if (error) {
-    redirect("/login?message=Error signing up");
+    redirect(`/login?message=${error?.message}`);
   }
 
   revalidatePath("/", "layout");
@@ -51,5 +52,22 @@ export async function signOut() {
   const { error } = await supabase.auth.signOut();
 
   revalidatePath("/", "layout");
-  redirect("/login");
+  redirect("/");
+}
+
+
+export async function oAuthSignIn() {
+
+  const supabase = createClient();
+  
+const { data, error } = await supabase.auth.signInWithOAuth({
+  provider: 'google',
+  options: {
+    redirectTo: 'http://localhost:3000/auth/callback',
+  },
+})
+
+if (data.url) {
+  redirect(data.url) // use the redirect API for your server framework
+}
 }

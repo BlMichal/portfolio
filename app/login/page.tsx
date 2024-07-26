@@ -1,5 +1,5 @@
 import { createClient } from "@/utils/supabase/server";
-import { login, signup } from "./actions";
+import { login, oAuthSignIn, signup } from "./actions";
 import { redirect } from "next/navigation";
 
 export default async function LoginPage({
@@ -9,7 +9,7 @@ export default async function LoginPage({
 }) {
   const supabase = await createClient();
 
-  const {data: { user }, } = await supabase.auth.getUser();
+  const {data: { user } } = await supabase.auth.getUser();
 
   if (user) {
     return redirect("/");
@@ -29,7 +29,7 @@ export default async function LoginPage({
           id="email"
           name="email"
           type="email"
-          required
+          
           className="w-full border-2 rounded-lg p-2 focus:outline-none focus:border-blue-500"
         />
       </div>
@@ -44,15 +44,23 @@ export default async function LoginPage({
           id="password"
           name="password"
           type="password"
-          required
+          
           className="w-full border-2 rounded-lg p-2 focus:outline-none focus:border-blue-500"
         />
       </div>
-      <div>
+      <div className="text-center">
         {searchParams.message && (
-          <span className="text-sm text-red-600">{searchParams.message}</span>
+          <span className="p-2 rounded-lg text-sm bg-red-500 text-white">{searchParams.message}</span>
         )}
       </div>
+      <button 
+        className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-300 transition duration-300"
+        type="submit"
+        formAction={oAuthSignIn}
+      >
+        Google
+      </button>
+
       <button
         className="w-full bg-black text-white py-2 rounded-lg hover:bg-slate-500 transition duration-300"
         type="submit"
