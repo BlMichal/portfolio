@@ -1,26 +1,31 @@
 'use server'
 
-import { supabase } from '@/utils/supabase';
+import { createClient } from "@/utils/supabase/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from 'next/navigation';
 
 
 export async function createTask(formData) {
 
-  const desc = formData.get('desc');
+  const supabase = createClient();
+
+  const desc = formData.get('desc');  
+  const userId = (await supabase.auth.getUser()).data.user?.id;  
 
   const { data, error } = await supabase
     .from('tasks')
-    .insert({ desc });
-  if (error) {
-    console.error(error);
+    .insert([{ desc: desc,user_id:userId }]);
+    
+  if (error) {    
     throw new Error('Failed to insert data');
   }
 
-  revalidatePath('/');
+  revalidatePath('/tasks');
 }
 
 export async function deleteTask(formData) {
+
+  const supabase = createClient();
 
   const id = formData.get('id');
 
@@ -39,6 +44,8 @@ export async function deleteTask(formData) {
 
 
 export async function updateTask(formData) {
+
+  const supabase = createClient();
 
   const id = formData.get('id');
   const desc = formData.get('desc')

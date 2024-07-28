@@ -5,12 +5,13 @@ import Link from "next/link";
 import Dropdown from "./Dropdown";
 import { useState } from "react";
 import { signOut } from "@/app/login/actions";
+import Image from "next/image";
 
 
-const Navbar = ({login}) => {
+const Navbar = ({user}) => {
 
   const [open, setOpen] = useState(false);  
-console.log(login?.email)
+
   return (          
       <div className="flex items-center font-medium bg-white" >     
         <ul className="md:flex hidden items-center gap-3 font-[Poppins]">
@@ -105,9 +106,9 @@ console.log(login?.email)
             </Link>
           </li>                 
           <div className="mt-10">
-            {login !== null ? (
+            {user !== null ? (
           <div className="flex flex-col gap-2 md:hidden">
-            <span>{login.email}</span>
+           {user?.user_metadata.avatar_url ? <Image src={user?.user_metadata.avatar_url} width={30} height={30} alt="Avatar Icon" className="rounded-full"/> : <span>{user?.email}</span>}
           <form action={signOut}>
             <button type="submit" className="text-neutral-400 transition-all hover:text-black/80">
               SignOut

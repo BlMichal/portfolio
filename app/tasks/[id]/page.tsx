@@ -1,8 +1,11 @@
-import { supabase } from '@/utils/supabase'
+
 import DeleteTaskForm from '@/components/DeleteTaskForm'
 import EditTaskForm from '@/components/EditTaskForm'
+import { createClient } from '@/utils/supabase/server';
 
 const DetailTasksPage = async({params}) => {
+
+  const supabase = createClient();
 
   const { data: tasks, error } = await supabase
     .from('tasks')
