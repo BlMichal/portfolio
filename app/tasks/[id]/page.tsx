@@ -1,6 +1,6 @@
 
-import DeleteTaskForm from '@/components/DeleteTaskForm'
-import EditTaskForm from '@/components/EditTaskForm'
+import DeleteTaskForm from '@/app/tasks/_components/DeleteTaskForm'
+import EditTaskForm from '@/app/tasks/_components/EditTaskForm'
 import { createClient } from '@/utils/supabase/server';
 
 const DetailTasksPage = async({params}) => {

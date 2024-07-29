@@ -9,12 +9,29 @@ export async function createTask(formData) {
 
   const supabase = createClient();
 
+  const title = formData.get('title');  
+  const price = formData.get('price');  
+  const mobileNumber = formData.get('mobileNumber');  
+  const postcode = formData.get('postcode');  
+  const city = formData.get('city');  
+  const category = formData.get('category');  
   const desc = formData.get('desc');  
+ 
+
   const userId = (await supabase.auth.getUser()).data.user?.id;  
 
   const { data, error } = await supabase
     .from('tasks')
-    .insert([{ desc: desc,user_id:userId }]);
+    .insert([{
+      title: title,
+      price: price,
+      mobile_number: mobileNumber,
+      postcode: postcode,
+      city: city,
+      category: category,
+      desc: desc,
+      user_id: userId
+    }]);
     
   if (error) {    
     throw new Error('Failed to insert data');
