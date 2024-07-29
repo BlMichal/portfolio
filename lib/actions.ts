@@ -6,7 +6,7 @@ import { redirect } from 'next/navigation';
 
 
 export async function createTask(formData) {
-
+  
   const supabase = createClient();
 
   const title = formData.get('title');  
@@ -19,25 +19,33 @@ export async function createTask(formData) {
  
 
   const userId = (await supabase.auth.getUser()).data.user?.id;  
-
+  
   const { data, error } = await supabase
     .from('tasks')
     .insert([{
       title: title,
       price: price,
-      mobile_number: mobileNumber,
+      mobileNumber: mobileNumber,
       postcode: postcode,
       city: city,
       category: category,
       desc: desc,
       user_id: userId
-    }]);
+      
+    }])
+    .select()
+
+    
+  if(data){
+    revalidatePath('/tasks');
+    redirect(`/tasks/create/${data[0].id}/`)
+  } 
     
   if (error) {    
-    throw new Error('Failed to insert data');
+    throw new Error('Failed to insert data');    
   }
 
-  revalidatePath('/tasks');
+  
 }
 
 export async function deleteTask(formData) {

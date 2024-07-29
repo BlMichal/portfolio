@@ -22,8 +22,8 @@ export default async function TaskPage() {
   
 
   return (
-    <section className="mt-5 md:px-4">      
-      <Form />
+    <section className="mt-5 md:px-4">   
+      
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 ">
         {tasks?.map((task) => (
           <div
