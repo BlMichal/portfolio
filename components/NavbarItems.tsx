@@ -6,59 +6,60 @@ import Dropdown from "./Dropdown";
 import { useState } from "react";
 import { signOut } from "@/app/login/actions";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+
 
 
 const Navbar = ({user}) => {
 
+  const router = useRouter()
   const [open, setOpen] = useState(false);  
 
   return (          
       <div className="flex items-center font-medium bg-white" >     
         <ul className="md:flex hidden items-center gap-3 font-[Poppins]">
           <li>
-            <Link
-              href={"/"}
+            <button              
               className="flex items-center relative hover:text-black text-neutral-400 group px-2 py-3 transition-all group"
             >
-              <span className="transition-all text-xl">Home</span>
+              <span onClick={()=>router.replace('/')} className="transition-all text-xl">Home</span>
               <span className=" transition-all group-hover:translate-y-0.5">
                 <ChevronsDown />
               </span>
               <div className="absolute top-12 w-auto hidden flex-col gap-4 px-4 rounded-lg bg-white py-3 shadow-md transition-all group-hover:flex z-[999]">
                 {/* DROPDOWN ITEMS */}
-                <Dropdown />
+                <Dropdown href='tasks/create' children="Create task" />
+                <Dropdown href='tasks/' children="Tasks list" />
               </div>
-            </Link>
+            </button>
           </li>
           <li >
-            <Link
-              href={"/"}
+            <button              
               className="flex items-center relative hover:text-black text-neutral-400 group px-2 py-3 transition-all group"
             >
-              <span className="transition-all text-xl">About</span>
+              <span onClick={()=>router.replace('/')} className="transition-all text-xl">About</span>
               <span className=" transition-all group-hover:translate-y-0.5">
                 <ChevronsDown />
               </span>
               <div className="absolute top-12 w-auto hidden flex-col gap-4 px-4 rounded-lg bg-white py-3 shadow-md transition-all group-hover:flex z-[999]">
                 {/* DROPDOWN ITEMS */}
-                <Dropdown />
+                <Dropdown href='about' children="About page"/>
               </div>
-            </Link>
+            </button>
           </li>
           <li className="mr-[2rem]">
-            <Link
-              href={"/"}
+            <button              
               className="flex items-center relative hover:text-black text-neutral-400 group px-2 py-3 transition-all group"
             >
-              <span className="transition-all text-xl">Projects</span>
+              <span onClick={()=>router.replace('/')} className="transition-all text-xl">Projects</span>
               <span className=" transition-all group-hover:translate-y-0.5">
                 <ChevronsDown />
               </span>
               <div className="absolute top-12 w-auto hidden flex-col gap-4 px-4 rounded-lg bg-white py-3 shadow-md transition-all group-hover:flex z-[999]">
                 {/* DROPDOWN ITEMS */}
-                <Dropdown />
+                <Dropdown href='' children='Project page'/>
               </div>
-            </Link>
+            </button>
           </li>          
         </ul>
 
@@ -70,40 +71,38 @@ const Navbar = ({user}) => {
         `}
         >          
           <li>
-            <Link
-              href={"/"}
+            <button             
               className="flex flex-col hover:text-black text-neutral-400 group transition-all group "
               
             ><div className="flex">
-              <span className="transition-all text-xl">Home</span>
+              <span onClick={()=>router.replace('/')} className="transition-all text-xl">Home</span>
               <span className=" transition-all group-hover:translate-y-0.5">
                 <ChevronsDown />
               </span>
             </div>
               <div className="group-hover:flex gap-2 hidden flex-col px-4 rounded-lg  bg-white py-4 shadow-md transition-all z-[999]">
                 {/* DROPDOWN ITEMS */}
-                <Dropdown />
-                <Dropdown />
+                <Dropdown href='tasks/create' children="Create task" />
+                <Dropdown href='tasks/' children="Tasks list" />
               </div>
-            </Link>
+            </button>
           </li>
           <li>
-            <Link
-              href={"/"}
+            <button              
               className="flex flex-col hover:text-black text-neutral-400 group py-3 transition-all group "
               
             ><div className="flex">
-              <span className="transition-all text-xl">Home</span>
+              <span onClick={()=>router.replace('/')} className="transition-all text-xl">Home</span>
               <span className=" transition-all group-hover:translate-y-0.5">
                 <ChevronsDown />
               </span>
             </div>
               <div className="group-hover:flex gap-2 hidden flex-col px-4 rounded-lg  bg-white py-4 shadow-md transition-all z-[999]">
                 {/* DROPDOWN ITEMS */}
-                <Dropdown />
-                <Dropdown />
+                <Dropdown href='tasks/create' children="Create task" />
+                <Dropdown href='tasks/' children="Tasks list" />
               </div>
-            </Link>
+            </button>
           </li>                 
           <div className="mt-10">
             {user !== null ? (
@@ -122,7 +121,7 @@ const Navbar = ({user}) => {
         )}
           </div>          
         </ul>        
-        <button onClick={() => setOpen(!open)} className="md:hidden z-50">
+        <button onClick={() => setOpen(!open)} className="fixed p-2 md:hidden z-50">
             {open ? "X" : "☰"}
           </button>     
       </div>   

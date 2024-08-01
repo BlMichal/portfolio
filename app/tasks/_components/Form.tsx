@@ -105,9 +105,10 @@ const Form = () => {
               id="category"
               name="category"
               className="bg-gray-50 border border-gray-300 mt-2 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-700 dark:focus:border-orange-400"
+              required
             >
-              <option>Ostatní</option>
-              <option>Elektronika</option>
+              <option disabled selected>Vyberte možnost</option>
+              <option className="focus:bg-green-600">Elektronika</option>
               <option>Auto/Moto</option>
               <option>Drogérie</option>              
             </select>

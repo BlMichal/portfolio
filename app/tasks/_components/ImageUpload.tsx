@@ -8,20 +8,24 @@ export default function UploadImage({pageId}) {
 
     const router = useRouter()
     const [files, setFiles] = useState<File[]>([]);
+    const [isUploading, setIsUploading] = useState<boolean>(false);
+    const [imagePreview,setImagePreview]= useState([]);
    
 
-    const handleFileChange = async(e) => {
+    const handleFileChange = (e) => {
         if (e.target.files) {
             const imageFiles = e.target.files
             setFiles(imageFiles);            
-        }
+        }        
     }
 
     const handleFileUpload = async () => {
         if (!files) {
-            console.log('No files selected');
-            return;
-        }
+            
+            return null;            
+        }       
+
+        setIsUploading(true); 
 
         const supabase = createClient();
 
@@ -30,17 +34,14 @@ export default function UploadImage({pageId}) {
             const fileExt = image.name.split(".").pop();
             const randomNumberGenerator = (Math.random() + 1).toString(36).substring(7) + Date.now().toString()
             const fileName = `${randomNumberGenerator}.${fileExt}`;
-
+            
             const { error } = await supabase.storage.from('adImages').upload(fileName, file);
-            console.log(error);
-
-
+          
             if (error) {
-           console.log
+              {/*ERROR*/}
             } else {
-                console.log('Jsem tu')
-                const imageUrl = process.env.NEXT_PUBLIC_IMAGE_URL + fileName;
-                console.log(imageUrl);
+                const imageUrl = process.env.NEXT_PUBLIC_IMAGE_URL + fileName; 
+                               
                 const { data, error } = await supabase
                     .from("tasksImages")
                     .insert([
@@ -51,11 +52,12 @@ export default function UploadImage({pageId}) {
                     ])
                     .select();
 
-                   console.log(data)
-                   router.push('/tasks')
-                    
+                  
+                   router.push('/tasks')                    
             }
         }
+
+        setIsUploading(false);
     }
 
     return (
@@ -66,13 +68,14 @@ export default function UploadImage({pageId}) {
                     <p className="mb-2 text-slm text-gray-500 dark:text-gray-400"><span className="font-semibold">Kliknout</span> nebo přetáhnout obrázek</p>
                     <p className="text-xs telxt-gray-500 dark:text-gray-400">formát SVG, PNG, JPG</p>
                 </div>                
-                <input id="dropzone-file" type="file" className="" onClick={handleFileChange} multiple accept="image/png, image/gif, image/jpg" />
+                <input id="dropzone-file" type="file" className="hidden" onChange={handleFileChange} multiple accept="image/png, image/gif, image/jpg" />
             </label>           
             <button
-                className="bg-orange-500 hover:bg-orange-700 text-white mt-6 font-bold py-2 px-4 rounded"
+                className={`bg-orange-500 hover:bg-orange-700 text-white mt-6 font-bold py-2 px-4 rounded ${isUploading ? 'cursor-not-allowed' : ''}`}
                 onClick={handleFileUpload}
+                disabled={isUploading}  // Disable the button during upload
             >
-                Uložit
+                {isUploading ? 'Ukládání...' : 'Uložit'}
             </button>
         </div >
     )
