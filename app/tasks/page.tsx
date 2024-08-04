@@ -25,7 +25,6 @@ export default async function TaskPage() {
   .from('tasks')
   .select('*, tasksImages(imageUrl)')
 
- console.log(tasks)
   const { data: { user } } = await supabase.auth.getUser();
   const userId = user?.id
   const isAdmin = user?.email
@@ -47,7 +46,7 @@ export default async function TaskPage() {
             <Link href={`/tasks/${task.id}`} className="h-full">
               <h2 className="text-2xl text-center">{task.desc}</h2>
             </Link>  
-            
+          
             {task.tasksImages && task.tasksImages.length > 0 ? (
               <Image 
                 src={task.tasksImages[0].imageUrl} 
