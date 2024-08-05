@@ -1,7 +1,8 @@
-
 import DeleteTaskForm from '@/app/tasks/_components/DeleteTaskForm'
 import EditTaskForm from '@/app/tasks/_components/EditTaskForm'
 import { createClient } from '@/utils/supabase/server';
+import Image from 'next/image';
+import ImageSwiperGallery from '../_components/ImageSwiperGallery';
 
 const DetailTasksPage = async ({ params }) => {
 
@@ -12,10 +13,20 @@ const DetailTasksPage = async ({ params }) => {
     .select('*')
     .eq('id', params.id)
 
+  const { data: tasksImages } = await supabase
+    .from('tasksImages')
+    .select('*')
+    .eq('id_tasks', params.id)
+    .order('id', { ascending: true })
 
+
+    
   return (
-    <section>
-      <div className='bg-slate-800 min-h-screen'>
+    <section className='bg-slate-800 min-h-screen'>
+      <div>
+        <ImageSwiperGallery images={tasksImages}/>        
+      </div>
+      <div>
         {tasks?.map((task) => (
           <div key={task.id}>
             <h2 className='text-3xl text-white'>{task.desc}</h2>
