@@ -22,7 +22,7 @@ const DetailTasksPage = async ({ params }) => {
     .order('id', { ascending: true })
     
   return (
-    <main className='bg-slate-800 min-h-screen'>      
+    <main className='bg-slate-800 min-h-screen-content'>      
       <div>
         <ImageSwiperGallery images={tasksImages}/>        
       </div>

@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      minHeight: {
+        'screen-content': 'calc(100vh - 55px)', 
+      },
       colors: {
         customColor1: "rgb(123,120,163)",
         customColor2: "rgb(233,240,239)",
@@ -16,7 +19,7 @@ const config: Config = {
         "hero-gradient":
           "linear-gradient(274deg, rgba(123,120,163,1) 6%, rgba(233,240,239,1) 92%)",
         "custom-bg": "url('/assets/patterns.svg')",
-        "crosspattern": "url('/assets/patterns2.svg')",
+        "crosspattern": "linear-gradient(rgba(255,255,255,1), rgba(255,255,255,0.4)), url('/assets/patterns2.svg')",
       }),
       boxShadow: { "custom-teal": "6px -5px teal" },
     },

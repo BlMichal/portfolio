@@ -2,7 +2,7 @@ import { createTask } from "@/lib/actions";
 
 const Form = () => {
   return (
-    <section className="min-h-screen flex w-full justify-center ">
+    <section className="min-h-screen-content flex w-full justify-center ">
       <form action={createTask} className="max-w-lg mx-auto h-full flex-1 md:border md:rounded-2xl md:border-black md:mt-20 px-6 py-2 md:shadow-[8px_8px_0px_0px_rgba(109,40,217)]">
         <div className="relative z-0 w-full mb-5 mt-5 group">
           <input

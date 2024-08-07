@@ -13,7 +13,9 @@ type TaskImage = {
 type Task = {
   id: number;
   user_id: string;
-  desc: string;
+  city: string;
+  title: string;
+  price: number;
   tasksImages: TaskImage[];
 };
 
@@ -35,7 +37,7 @@ export default async function TaskPage() {
   }
 
   return (
-    <section className="bg-crosspattern h-screen">
+    <section className="bg-crosspattern min-h-screen-content">
       <div className="max-w-7xl grid grid-cols-1 gap-4 gap-y-10 lg:grid-cols-2 pt-14 px-4 mx-auto ">
         {tasks?.map((task: Task) => (
           <div
@@ -73,12 +75,12 @@ export default async function TaskPage() {
                 Více informací
               </Link>
             </article>
-            {isAdmin == process.env.SUPABASE_ADMIN ? (
+            {/* {isAdmin == process.env.SUPABASE_ADMIN ? (
               <div className="flex justify-around gap-1 p-2">
                 <DeleteTaskForm id={task.id} className="w-3/6" />
                 <EditTaskForm task={task} className="w-3/6" />
               </div>
-            ) : null}
+            ) : null} */}
           </div>
         ))}
       </div>
