@@ -15,9 +15,9 @@ export default function EditTodo({ id , className }) {
                 DELETE
             </button>
             {showModal && (
-                <div className="fixed inset-0 bg-gray-800 bg-opacity-95 flex justify-center items-center px-4">
-                    <div className="modal-content bg-gray-900 p-6 rounded-lg w-full max-w-md">
-                        <span className="close text-white text-xl leading-none hover:text-gray-300 cursor-pointer float-right" onClick={() => setShowModal(false)}>&times;</span>
+                <dialog className="fixed inset-0 w-full h-full bg-gray-800 bg-opacity-95 flex justify-center items-center px-4 z-50">
+                    <div className="bg-gray-900 p-6 rounded-lg w-full max-w-md">
+                        <span className="text-white text-xl leading-none hover:text-gray-300 cursor-pointer float-right" onClick={() => setShowModal(false)}>&times;</span>
                         <form action={deleteTask} onSubmit={() => setShowModal(false)} className="mt-4">
                             <label htmlFor="id" className="text-white">Prejete si smazat tento TASK ?</label>
                             <input
@@ -35,7 +35,7 @@ export default function EditTodo({ id , className }) {
                             </div>
                         </form>
                     </div>
-                </div>
+                </dialog>
             )}
         </>
     )

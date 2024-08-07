@@ -1,6 +1,6 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useRef, useEffect, Children } from "react";
 
 type Props = {
@@ -11,28 +11,25 @@ type Props = {
 };
 
 export default function Modal({ title, onClose, onOk, children }: Props) {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const searchParams= useSearchParams();
   const dialogRef = useRef<null | HTMLDialogElement>(null);
-
+  const router = useRouter()
   const showDialog = searchParams.get("showDialog");
 
   useEffect(() => {
     if (showDialog === "open") {
-      dialogRef.current?.show();
+      dialogRef.current?.showModal();
     } else {
       dialogRef.current?.close();
     }
   }, [showDialog]);
 
-  const removeErrorParam = () => {
-    if (searchParams.has('error')) {
-      searchParams.delete('error');
-      setSearchParams(searchParams);
-    }
+ 
 
   const closeDialog = () => {
     dialogRef.current?.close();
     onClose();
+    
   };
 
   const clickOk = () => {
@@ -40,9 +37,9 @@ export default function Modal({ title, onClose, onOk, children }: Props) {
     closeDialog();
   };
 
-  const dialog: JSX.Element | null =
-    showDialog === "open" ? (
-      <dialog ref={dialogRef} className="fixed top-50 left-50 -translate-x-50 -translate-y-50 z-50 backdrop:bg-black  ">
+  
+    return (showDialog === "open" ? (
+      <dialog ref={dialogRef} onClose={router.back} className="fixed top-10 left-0 z-50 backdrop:bg-black/60 backdrop:bg  ">
         <div className="w-96 bg-gray-600 flex flex-col">
           <div className="flex justify-between mb-4">
             <h1>{title}</h1>
@@ -56,7 +53,7 @@ export default function Modal({ title, onClose, onOk, children }: Props) {
           </div>
         </div>
       </dialog>
-    ) : null;
+    ) : null)
 
-  return dialog;
+   
 }

@@ -28,7 +28,6 @@ export default function UploadImage({ pageId }) {
             return null;
         }
 
-
         for (const file of files) {
             const image = file
             const fileExt = image.name.split(".").pop();
@@ -66,8 +65,7 @@ export default function UploadImage({ pageId }) {
                 </div>
                 <input id="dropzone-file" type="file" className="hidden" onChange={handleFileChange} multiple accept="image/png, image/gif, image/jpg" />
             </label>
-            <SubmitButton/>
-            
+            <SubmitButton/>            
         </form>
     )
 }

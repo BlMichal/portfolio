@@ -4,7 +4,9 @@ import Link from "next/link";
 const Hero = () => {
   return (
     <section className="max-w-[1440px] h-screen grid lg:grid-cols-2 mx-auto">
-      <div className="mt-10 lg:pb-20 lg:mt-0 px-10 flex flex-col justify-center z-10">
+      <div className="mt-10 lg:pb-20 lg:mt-0 px-10 flex flex-col justify-center z-10 ">
+        <div className="bg-white rounded-2xl p-4">
+        
         <h2 className="font-bold text-3xl pb-5">PROJECT TITLE</h2>
         <p className="max-w-xl">
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut fuga rem
@@ -17,6 +19,7 @@ const Hero = () => {
               TASKLIST
             </button>
           </Link>
+        </div>
         </div>
       </div>
       <div className=" w-full relative lg:row-span-1 row-span-5 lg:top-0 -top-1/4">

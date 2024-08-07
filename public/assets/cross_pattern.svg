@@ -1,0 +1,2 @@
+<svg class="w-full h-full" viewBox="0 0 400 400"><defs><pattern id="bg_pattern" width="100" height="100" patternUnits="userSpaceOnUse"><line x1="10" y1="10" x2="90" y2="90" stroke="#802ccf" stroke-width="6" stroke-linecap="round" opacity="0.6"></line> <line x1="10" y1="90" x2="90" y2="10" stroke="#802ccf" stroke-width="6" stroke-linecap="round" opacity="0.6"></line></pattern></defs><rect x="0" y="0" width="100%" height="100%" fill="#ffffff" opacity="0.6"></rect><rect x="0" y="0" width="100%" height="100%" fill="url(#bg_pattern)" opacity="0.6"></rect>
+</svg>

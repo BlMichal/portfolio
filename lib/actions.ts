@@ -72,11 +72,17 @@ export async function updateTask(formData) {
   const supabase = createClient();
 
   const id = formData.get('id');
-  const desc = formData.get('desc')
+  const desc = formData.get('desc');
+  const price = formData.get('price');  
+  const postcode = formData.get('postcode');  
+  const title = formData.get('title');  
+  const city = formData.get('title');  
+
+ 
 
   const { data, error } = await supabase
   .from('tasks')
-  .update({ desc })
+  .update({ desc,price,postcode,title,city})
   .eq('id', id)
   .select()
 

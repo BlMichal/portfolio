@@ -20,38 +20,27 @@ const DetailTasksPage = async ({ params }) => {
     .select('*')
     .eq('id_tasks', params.id)
     .order('id', { ascending: true })
-
-    async function onClose() {
-      'use server'
-      console.log("Modal close")      
-    }
-
-    async function onOk() {
-      'use server'
-      console.log("OK was clicked")      
-    }
-
-
-
     
   return (
-    <section className='bg-slate-800 min-h-screen'>
-      <Modal title="Ukazka" onClose={onClose} onOk={onOk} >Modaal</Modal>
+    <main className='bg-slate-800 min-h-screen'>      
       <div>
         <ImageSwiperGallery images={tasksImages}/>        
       </div>
       <div>
         {tasks?.map((task) => (
-          <div key={task.id}>
-            <h2 className='text-3xl text-white'>{task.desc}</h2>
-            <p className='text-3xl text-white'>Tohle je id stranky:{task.id}</p>
-              <Link href={`/tasks/${params.id}?showDialog=open`}>DELETE</Link>
-            {/* <DeleteTaskForm id={task.id} className="" /> */}
-            <EditTaskForm task={task} className="" />
+          <div className='flex flex-col gap-2 px-4 mt-4' key={task.id}>
+            <h2 className='text-3xl text-white'>{task.title}</h2>
+            <p className='text-1xl text-white'>Tohle je id stranky:{task.id}</p>
+            <p className='text-1xl text-white'>{task.desc}</p>
+            <div className='flex mt-20'>
+            <DeleteTaskForm id={task.id} className="" />
+            <EditTaskForm task={task} className="" /> 
+            </div>
+
           </div>
         ))}
-      </div>
-    </section>
+      </div>      
+    </main>
   )
 }
 

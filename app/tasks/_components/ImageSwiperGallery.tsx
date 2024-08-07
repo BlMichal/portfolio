@@ -10,12 +10,15 @@ import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import SwiperInterface from "swiper"
+import { useRouter } from "next/navigation"
 
 const ImageSwiperGallery = ({ images }) => {
+
+    const router = useRouter()
     const [thumbsSwiper, setThumbsSwiper] = useState<SwiperInterface | null>(null)
 
     return (
-        <section className="bg-white -z-10">
+        <section className="bg-black -z-10">
             <Swiper
                 loop={true}
                 spaceBetween={10}
@@ -26,7 +29,7 @@ const ImageSwiperGallery = ({ images }) => {
                 {images.map((image) => (
                     <SwiperSlide key={image.id}>
                         <div className="flex items-center justify-center">
-                            <Image src={image.imageUrl} sizes="100vw" fill alt="Galerie fotek inzerátu" className="object-contain -z-10" />
+                            <Image  src={image.imageUrl} sizes="100vw" fill alt="Fotka inzerátu" className="object-contain -z-10" />                                                                                  
                         </div>
                     </SwiperSlide>
                 ))}
@@ -42,8 +45,9 @@ const ImageSwiperGallery = ({ images }) => {
                 {images.map((image) => (
                     <SwiperSlide key={image.id}>
                         <div className="w-full h-full mt-3 flex justify-center items-center">
-                            <Image src={image.imageUrl} width={150} height={150} alt="Galerie fotek inzerátu" className=" border-4 border-green-600 object-contain -z-10" />
+                            <Image src={image.imageUrl} width={150} height={150} alt="Galerie fotek inzerátu" className=" border-4 border-green-600 object-contain -z-10" />                            
                         </div>
+                        
                     </SwiperSlide>
                 ))}
             </Swiper>
