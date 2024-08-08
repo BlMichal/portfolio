@@ -13,13 +13,10 @@ export default function UploadImage({ pageId }) {
     const [imagePreview, setImagePreview] = useState([]);
 
 
-
-
     const handleFileChange = (e) => {
         if (e.target.files) {
             const imageFiles = e.target.files
             setFiles(imageFiles);
-
         }
     }
 
@@ -34,7 +31,7 @@ export default function UploadImage({ pageId }) {
             const randomNumberGenerator = (Math.random() + 1).toString(36).substring(7) + Date.now().toString()
             const fileName = `${randomNumberGenerator}.${fileExt}`;
 
-            const { error } = await supabase.storage.from('adImages').upload(fileName, file);
+            const {error } = await supabase.storage.from('adImages').upload(fileName, file);
 
             if (error) {
                 {/*ERROR*/ }

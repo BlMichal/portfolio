@@ -124,7 +124,7 @@ const Navbar = ({user}) => {
         <button onClick={() => setOpen(!open)} className="fixed p-2 md:hidden z-50">
             {open ? "X" : "☰"}
           </button>     
-      </div>   
+    </div>   
   );
 };
 
