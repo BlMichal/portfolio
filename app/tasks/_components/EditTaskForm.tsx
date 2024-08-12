@@ -2,8 +2,10 @@
 
 import { updateTask } from "@/lib/actions"
 import { useState } from "react"
+import ImageUpload from "./ImageUpload"
 
 type form = {
+    id: number | string
     desc : string
     title: string
     price : number
@@ -87,8 +89,7 @@ export default function EditTodo({ task, className }) {
                                     onChange={handleChange}
                                     className="w-full p-2 rounded bg-gray-800 text-white border border-gray-700 focus:border-blue-500"
                                 />
-                            </div>
-                            
+                            </div>                            
                             <div className="mb-4">
                                 <label htmlFor="desc" className="block text-gray-300 mb-2">Popis</label>
                                 <textarea

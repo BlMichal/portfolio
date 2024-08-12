@@ -4,8 +4,19 @@ import { createClient } from "@/utils/supabase/client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import SubmitButton from "./SubmitButton";
+import { revalidatePath } from "next/cache";
 
-export default function UploadImage({ pageId }) {
+type UploadFormProps = {
+    variant: 'default' | 'compact' 
+    pageId: string; 
+};
+
+export default function ImageUpload({ variant, pageId }: UploadFormProps) {
+
+    const labelClass = {
+        default: "flex flex-col items-center justify-center w-full h-64 border-2 border-orange-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500",
+        compact: "flex flex items-center justify-center border-2 border-blue-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500",
+    };
 
     const supabase = createClient();
     const router = useRouter()
@@ -48,13 +59,14 @@ export default function UploadImage({ pageId }) {
                     .select();
 
                 router.push('/tasks')
+                revalidatePath('/tasks/')
             }
         }
     }
 
     return (
         <form action={handleFileUpload} className="md:w-4/6 w-5/6 flex flex-col items-end">
-            <label htmlFor="dropzone-file" className="flex flex-col items-center justify-center w-full h-64 border-2 border-orange-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 ">
+            <label htmlFor="dropzone-file" className={labelClass[variant]}>
                 <div className="flex flex-col items-center justify-center pt-5 pb-6">
                     {/* SVG */}
                     <p className="mb-2 text-slm text-gray-500 dark:text-gray-400"><span className="font-semibold">Kliknout</span> nebo přetáhnout obrázek</p>

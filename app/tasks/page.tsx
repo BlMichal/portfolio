@@ -21,15 +21,14 @@ type Task = {
 };
 
 export default async function TaskPage() {
+
   const supabase = createClient();
 
   const { data: tasks, error } = await supabase
     .from("tasks")
     .select("*, tasksImages(imageUrl)");
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const { data: { user }} = await supabase.auth.getUser();
   const userId = user?.id;
   const isAdmin = user?.email;
 
@@ -57,7 +56,7 @@ export default async function TaskPage() {
                 />
               ) : (
                 <p className="text-center mt-16 font-bold">
-                  Nebyli nalezeny žádné fotografie
+                  Nebyli nalezeny fotografie
                 </p>
               )}
             </div>

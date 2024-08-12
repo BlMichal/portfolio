@@ -11,47 +11,59 @@ import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import SwiperInterface from "swiper"
 import { useRouter } from "next/navigation"
+import DeleteImageForm from "./DeleteImageForm"
+
+
+type ImageProps = {
+    id : string,
+    imageUrl: string
+}
 
 const ImageSwiperGallery = ({ images }) => {
 
     const router = useRouter()
     const [thumbsSwiper, setThumbsSwiper] = useState<SwiperInterface | null>(null)
+    
 
     return (
-        <section className="bg-black -z-10">
+        <section className="bg-black pt-2">
+            {images.length > 0 ?  
+            <>       
             <Swiper
                 loop={true}
                 spaceBetween={10}
                 navigation={true}
                 thumbs={{ swiper: thumbsSwiper }}
                 modules={[FreeMode, Navigation, Thumbs]}
-                className="h-96 md:w-1/3 w-full" >
-                {images.map((image) => (
+                className="h-96 md:w-2/3 w-full mb-2" >
+                {images.map((image: ImageProps) => (
                     <SwiperSlide key={image.id}>
-                        <div className="flex items-center justify-center">
-                            <Image  src={image.imageUrl} sizes="100vw" fill alt="Fotka inzerátu" className="object-contain -z-10" />                                                                                  
+                        <div className="flex items-center justify-center static">
+                            <Image src={image.imageUrl} sizes="100vw" fill alt="Fotka inzerátu" className="object-contain -z-10" />                                                                                  
                         </div>
                     </SwiperSlide>
                 ))}
-            </Swiper>
+            </Swiper>    
+                    
             <Swiper
                 onSwiper={setThumbsSwiper}
                 spaceBetween={12}
-                slidesPerView={images.length}
+                slidesPerView={4}
                 freeMode={true}
                 watchSlidesProgress={true}
                 modules={[FreeMode, Navigation, Thumbs]}
-                className="h-[150px] w-full">
-                {images.map((image) => (
+                className="h-[100px] md:w-4/5 w-full">
+                {images.map((image:ImageProps) => (
                     <SwiperSlide key={image.id}>
-                        <div className="w-full h-full mt-3 flex justify-center items-center">
-                            <Image src={image.imageUrl} width={150} height={150} alt="Galerie fotek inzerátu" className=" border-4 border-green-600 object-contain -z-10" />                            
-                        </div>
-                        
+                        <div className="md:w-32 w-full h-full relative cursor-pointer flex-1">
+                            <Image src={image.imageUrl} sizes="100vw" fill alt="Galerie fotek inzerátu" className="border-4 border-gray-600 object-contain -z-10" />
+                            <DeleteImageForm id={image.id} url={image.imageUrl} />                            
+                        </div>                        
                     </SwiperSlide>
                 ))}
-            </Swiper>
-
+            </Swiper> 
+            </>
+            : <h1 className="text-white text-2xl text-center py-8">Inzerát neobsahuje fotografie</h1> }               
         </section>
     )
 }

@@ -4,9 +4,9 @@ import Link from "next/link";
 const Hero = () => {
   return (
     <section className="max-w-[1440px] min-h-screen-content grid lg:grid-cols-2 mx-auto">
-      <div className="mt-10 lg:pb-20 lg:mt-0 px-10 flex flex-col justify-center z-10 ">
-        <div className="bg-white rounded-2xl p-4 relative">
-          <div className="content-[''] absolute top-0 left-0 h-full rounded-full w-2 bg-purple-800"></div>
+      <div className="mt-10 lg:pb-20 lg:mt-0 md:px-10 px-2 flex flex-col justify-center z-10 ">
+        <div className="bg-white rounded-2xl p-8 relative shadow-2xl">
+          <div className="content-[''] absolute top-8 md:top-6 left-3 h-4/5 rounded-full w-1 bg-purple-800"></div>
           <h2 className="font-bold text-3xl pb-5">PROJECT TITLE</h2>
           <p className="max-w-xl">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut fuga rem

@@ -3,8 +3,12 @@
 import { deleteTask } from "@/lib/actions"
 import { useState } from "react"
 
+type DeleteImageProps = {
+    id : string,
+    className?: string
+}
 
-export default function EditTodo({ id , className }) {
+export default function EditTodo({ id , className }:DeleteImageProps) {
 
     const [showModal, setShowModal] = useState(false) 
     

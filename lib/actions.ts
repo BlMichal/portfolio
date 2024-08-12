@@ -91,3 +91,30 @@ export async function updateTask(formData) {
   } 
   revalidatePath('/'); 
 }
+
+export async function deleteImages(formData) {
+
+  const supabase = createClient();
+
+  const id = formData.get('id');
+  const imageUrl = formData.get('imageUrl');
+
+  const { error } = await supabase
+    .from('tasksImages')
+    .delete()
+    .eq('id', id)
+
+    const imageId = imageUrl.split('/').pop()
+
+  const { data, error: errorBucket } = await supabase
+    .storage
+    .from('adImages')
+    .remove([imageId])
+
+
+  if (error) {
+    console.log(error)
+  } 
+  revalidatePath(`/tasks/${id}`);
+  
+}
