@@ -28,26 +28,26 @@ const AsideBar = () => {
         } h-full bg-customColor1 duration-300 relative`}
       >
         <ArrowBigLeftDash
-          className={`absolute cursor-pointer -right-4 top-9 h-9 w-9 border-2 rounded-full bg-white ${
+          className={`absolute cursor-pointer -right-4 top-9 h-9 w-9 border-2 rounded-full md:block z-10 hidden bg-white ${
             !isOpen && "rotate-180"
           } `}
           onClick={() => setIsOpen(!isOpen)}
         />
-        <ul className="flex flex-col px-3 gap-2 mt-4">
+        <ul className="flex flex-col px-3 gap-2 mt-4 ">
           {menus.map((menu) => (
             <Link
               key={menu.id}
               href={menu.href}
-              className=" text-white text-sm flex gap-2 items-center cursor-pointer px-4 py-2 rounded-xl hover:bg-gray-500"
+              className=" text-white text-sm flex gap-2 items-center cursor-pointer px-4 py-2 rounded-xl group hover:bg-gray-500 relative"
             >
               <span>{menu.src}</span>
-              {isOpen ? <p className="origin-left whitespace-nowrap">{menu.title}</p> : null}
+              {isOpen ? <p className="origin-left whitespace-nowrap">{menu.title}</p> : <div className="hidden group-hover:block md:group-hover:hidden absolute px-3 top-0 left-14 rounded-lg bg-black z-10">{menu.title}</div>}
             </Link>
           ))}
         </ul>
       </div>
     </aside>
-  );
+  )
 };
 
 export default AsideBar;

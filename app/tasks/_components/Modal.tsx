@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useRef, useEffect, Children } from "react";
+import { useRef, useEffect } from "react";
 
 type Props = {
   title: string;

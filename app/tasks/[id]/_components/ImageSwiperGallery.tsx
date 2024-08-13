@@ -26,7 +26,7 @@ const ImageSwiperGallery = ({ images }) => {
     
 
     return (
-        <section className="bg-black pt-2">
+        <section className="bg-black py-2">
             {images.length > 0 ?  
             <>       
             <Swiper
@@ -38,8 +38,8 @@ const ImageSwiperGallery = ({ images }) => {
                 className="h-96 md:w-2/3 w-full mb-2" >
                 {images.map((image: ImageProps) => (
                     <SwiperSlide key={image.id}>
-                        <div className="flex items-center justify-center static">
-                            <Image src={image.imageUrl} sizes="100vw" fill alt="Fotka inzerátu" className="object-contain -z-10" />                                                                                  
+                        <div className="flex items-center justify-center">
+                            <Image src={image.imageUrl} sizes="100vw" fill alt="Fotka inzerátu" className="object-contain px-1" />                                                                                  
                         </div>
                     </SwiperSlide>
                 ))}
@@ -48,16 +48,16 @@ const ImageSwiperGallery = ({ images }) => {
             <Swiper
                 onSwiper={setThumbsSwiper}
                 spaceBetween={12}
-                slidesPerView={4}
+                slidesPerView={images.length}
                 freeMode={true}
                 watchSlidesProgress={true}
                 modules={[FreeMode, Navigation, Thumbs]}
                 className="h-[100px] md:w-4/5 w-full">
                 {images.map((image:ImageProps) => (
                     <SwiperSlide key={image.id}>
-                        <div className="md:w-32 w-full h-full relative cursor-pointer flex-1">
-                            <Image src={image.imageUrl} sizes="100vw" fill alt="Galerie fotek inzerátu" className="border-4 border-gray-600 object-contain -z-10" />
-                            <DeleteImageForm id={image.id} url={image.imageUrl} />                            
+                        <div className="h-full relative cursor-pointer">
+                            <Image src={image.imageUrl} sizes="100vw" fill alt="Galerie fotek inzerátu" className="border-2 rounded-md border-gray-600 object-contain z-10" />
+                            <DeleteImageForm imageId={image.id} imageUrl={image.imageUrl} />                            
                         </div>                        
                     </SwiperSlide>
                 ))}
