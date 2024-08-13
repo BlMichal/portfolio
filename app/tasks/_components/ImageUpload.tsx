@@ -3,8 +3,9 @@
 import { createClient } from "@/utils/supabase/client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { usePathname } from 'next/navigation';
 import SubmitButton from "./SubmitButton";
-import { revalidatePath } from "next/cache";
+import Image from "next/image";
 
 type UploadFormProps = {
   variant: "default" | "compact";
@@ -20,6 +21,7 @@ export default function ImageUpload({ variant, pageId }: UploadFormProps) {
       "flex=flex-col items-center justify-center w-full h-20 border-2 my-1 border-orange-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500",
   };
 
+  const pathname = usePathname()
   const supabase = createClient();
   const router = useRouter();
   const [files, setFiles] = useState<File[]>([]);
@@ -42,8 +44,7 @@ export default function ImageUpload({ variant, pageId }: UploadFormProps) {
     for (const file of files) {
       const image = file;
       const fileExt = image.name.split(".").pop();
-      const randomNumberGenerator =
-        (Math.random() + 1).toString(36).substring(7) + Date.now().toString();
+      const randomNumberGenerator = (Math.random() + 1).toString(36).substring(7) + Date.now().toString();
       const fileName = `${randomNumberGenerator}.${fileExt}`;
 
       const { error } = await supabase.storage
@@ -65,10 +66,14 @@ export default function ImageUpload({ variant, pageId }: UploadFormProps) {
             },
           ])
           .select();
-
-        router.push("/tasks");
-        revalidatePath("/tasks/");
       }
+    }
+    setImagePreview([])
+    if (pathname === `/tasks/create/${pageId}`) {
+      router.push('/tasks')
+    }
+    else {
+      router.refresh()
     }
   };
 
@@ -77,14 +82,16 @@ export default function ImageUpload({ variant, pageId }: UploadFormProps) {
       action={handleFileUpload}
       className="md:w-4/6 w-5/6 flex flex-col items-end"
     >
-      {imagePreview.length > 0 &&(
-        <div className="w-24 h-24 gap-1 flex flex-row-reverse ">
+      {imagePreview.length > 0 && (
+        <div className="w-24 h-24 gap-1 flex flex-row-reverse">
           {imagePreview.map((src, index) => (
-            <img
+            <Image
               key={index}
               src={src}
+              width={96}
+              height={96}
               alt={`Preview ${index}`}
-              className="object-cover"
+              className="object-contain"
             />
           ))}
         </div>

@@ -32,9 +32,9 @@ export default async function TaskPage() {
   const userId = user?.id;
   const isAdmin = user?.email;
 
-  if (!user) {
-    return redirect("/login");
-  }
+  // if (!user) {
+  //   return redirect("/login");
+  // }
 
   return (
     <section className="bg-peak-background min-h-screen-content flex ">

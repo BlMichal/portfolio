@@ -39,7 +39,9 @@ const DetailTasksPage = async ({ params }:{ params: { id: string }}) => {
           {tasks?.map((task:DetailsFormProps)=> (
             <div className="flex flex-col gap-2 px-4 pt-4 text-white" key={task.id}>             
              <h2 className="font-bold text-lg">{task.title}</h2>
+             <hr className="my-2 w-full"  />
              <p>{task.desc}</p>
+             <hr className="my-2" />
              <div className="grid md:grid-cols-2 grid-cols-1 gap-y-3 mt-4">
              <span className="flex gap-2"><Phone />Telefon:<p className="font-bold"> {task.mobileNumber}</p></span>
              <span className="flex gap-2"><Wallet />Cena:<p className="font-bold"> {task.price} kč</p></span>
@@ -52,7 +54,7 @@ const DetailTasksPage = async ({ params }:{ params: { id: string }}) => {
               </div>
             </div>
           ))}        
-        <div className="ml-4 mt-4 pb-4 flex justify-end">
+        <div className="mx-4 mt-4 pb-4 flex justify-end">
           <ImageUpload variant={"compact"} pageId={params.id}  />
         </div>
       </div>
