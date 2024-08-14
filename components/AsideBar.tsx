@@ -21,19 +21,19 @@ const AsideBar = () => {
   ];
 
   return (
-    <aside className="flex">
+    <aside className="">
       <div
         className={`${
           isOpen ? "w-72" : "w-20"
         } h-full bg-customColor1 duration-300 relative`}
       >
-        <ArrowBigLeftDash
-          className={`absolute cursor-pointer -right-4 top-9 h-9 w-9 border-2 rounded-full md:block z-10 hidden bg-white ${
+        <ArrowBigLeftDash size={35}
+          className={`absolute cursor-pointer -right-4 top-9 border-2 rounded-full md:block z-10 hidden bg-white ${
             !isOpen && "rotate-180"
           } `}
           onClick={() => setIsOpen(!isOpen)}
         />
-        <ul className="flex flex-col px-3 gap-2 mt-4 ">
+        <ul className="flex flex-col px-3 gap-2 pt-4">
           {menus.map((menu) => (
             <Link
               key={menu.id}
