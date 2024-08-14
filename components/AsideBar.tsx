@@ -14,23 +14,21 @@ const AsideBar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const menus = [
-    { id: 1, title: "Nový inzerát", src: <FilePlus2 />, href:'/tasks/create' },
-    { id: 2, title: "Domovská stránka", src: <House />, href:'/' },
-    { id: 3, title: "Moje inzeráty", src: <BookOpenCheck />, href:'/tasks/' },
-    { id: 4, title: "Oblíbené inzeráty", src: <Star />, href:'/' },
+    { id: 1, title: "Nový inzerát", src: <FilePlus2 />, href: '/tasks/create' },
+    { id: 2, title: "Domovská stránka", src: <House />, href: '/' },
+    // { id: 3, title: "Moje inzeráty", src: <BookOpenCheck />, href:'/tasks/' },
+    // { id: 4, title: "Oblíbené inzeráty", src: <Star />, href:'/' },
   ];
 
   return (
     <aside className="">
       <div
-        className={`${
-          isOpen ? "w-72" : "w-20"
-        } h-full bg-customColor1 duration-300 relative`}
+        className={`${isOpen ? "w-72" : "w-20"
+          } h-full bg-customColor1 duration-300 relative`}
       >
         <ArrowBigLeftDash size={35}
-          className={`absolute cursor-pointer -right-4 top-9 border-2 rounded-full md:block z-10 hidden bg-white ${
-            !isOpen && "rotate-180"
-          } `}
+          className={`absolute cursor-pointer -right-4 top-9 border-2 rounded-full md:block z-10 hidden bg-white ${!isOpen && "rotate-180"
+            } `}
           onClick={() => setIsOpen(!isOpen)}
         />
         <ul className="flex flex-col px-3 gap-2 pt-4">
@@ -41,7 +39,7 @@ const AsideBar = () => {
               className=" text-white text-sm flex gap-2 items-center cursor-pointer px-4 py-2 rounded-xl group hover:bg-gray-500 relative"
             >
               <span>{menu.src}</span>
-              {isOpen ? <p className="origin-left whitespace-nowrap">{menu.title}</p> : <div className="hidden group-hover:block md:group-hover:hidden absolute px-3 top-0 left-14 rounded-lg bg-black z-10">{menu.title}</div>}
+              {isOpen ? <p className="origin-left whitespace-nowrap">{menu.title}</p> : <div className="hidden group-hover:block md:group-hover:hidden absolute px-3 top-0 left-14 rounded-lg bg-gray-500 z-10">{menu.title}</div>}
             </Link>
           ))}
         </ul>

@@ -20,18 +20,17 @@ type Task = {
 };
 
 const TasksView = ({ tasks }) => {
-  const [filter, setFilter] = useState("");
-  const [filteTasks, setFilteredTasks] = useState(tasks);
 
-  const handleFilter = (filterValue) => {
-    setFilter(filterValue);
+  const [filteredTasks, setFilteredTasks] = useState(tasks);
 
-    function removeAccents(word: string) {
-      return word
+  const handleFilter = (filterValue: string) => {
+    function removeAccents(str: string) {
+      return str
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "")
         .toLowerCase();
     }
+
     const filteredTasks = tasks.filter((task) =>
       removeAccents(task.title).includes(removeAccents(filterValue))
     );
@@ -43,7 +42,7 @@ const TasksView = ({ tasks }) => {
     <div className="max-w-7xl mx-auto flex-auto">
       <FilterBar inputValue={handleFilter} />
       <div className="max-w-7xl grid grid-cols-1 gap-4 gap-y-10 lg:grid-cols-2 pt-14 px-4 mx-auto flex-auto ">
-        {filteTasks?.map((task: Task) => (
+        {filteredTasks?.map((task: Task) => (
           <div
             key={task.id}
             className="h-[300px] border-2 flex flex-col border-customColor1 justify-between bg-slate-100 shadow-md rounded-lg last:mb-10"
