@@ -22,8 +22,14 @@ type Task = {
 const TasksView = ({ tasks }) => {
 
   const [filteredTasks, setFilteredTasks] = useState(tasks);
+  const [inputValue, setInputValue] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
 
-  const handleFilter = (filterValue: string) => {
+ 
+  const handleFilterChange = (newFilterValue: string, newCategory: string) => {
+    setInputValue(newFilterValue);
+    setSelectedCategory(newCategory);
+
     function removeAccents(str: string) {
       return str
         .normalize("NFD")
@@ -31,16 +37,23 @@ const TasksView = ({ tasks }) => {
         .toLowerCase();
     }
 
-    const filteredTasks = tasks.filter((task) =>
-      removeAccents(task.title).includes(removeAccents(filterValue))
-    );
+    const filtered = tasks.filter((task) => {
+      const titleMatch = removeAccents(task.title).includes(removeAccents(newFilterValue));
+      const descMatch = removeAccents(task.desc).includes(removeAccents(newFilterValue));
+      const categoryMatch = newCategory ? task.category === newCategory : true;
 
-    setFilteredTasks(filteredTasks);
+      return (titleMatch || descMatch) && categoryMatch;
+    });
+
+    setFilteredTasks(filtered);
   };
+
+
 
   return (
     <div className="max-w-7xl mx-auto flex-auto">
-      <FilterBar inputValue={handleFilter} />
+      <FilterBar   inputValue={(value) => handleFilterChange(value, selectedCategory)} 
+        selectValue={(value) => handleFilterChange(inputValue, value)}  />
       <div className="max-w-7xl grid grid-cols-1 gap-4 gap-y-10 lg:grid-cols-2 pt-14 px-4 mx-auto flex-auto ">
         {filteredTasks?.map((task: Task) => (
           <div
