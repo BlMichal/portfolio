@@ -16,6 +16,7 @@ type Task = {
   city: string;
   title: string;
   price: number;
+  category: string;
   tasksImages: TaskImage[];
 };
 
@@ -26,7 +27,7 @@ const TasksView = ({ tasks }) => {
   const [selectedCategory, setSelectedCategory] = useState("");
 
  
-  const handleFilterChange = (newFilterValue: string, newCategory: string) => {
+  const handleFilterChange = (newFilterValue, newCategory) => {
     setInputValue(newFilterValue);
     setSelectedCategory(newCategory);
 
@@ -53,7 +54,7 @@ const TasksView = ({ tasks }) => {
   return (
     <div className="max-w-7xl mx-auto flex-auto">
       <FilterBar   inputValue={(value) => handleFilterChange(value, selectedCategory)} 
-        selectValue={(value) => handleFilterChange(inputValue, value)}  />
+                  selectValue={(value) => handleFilterChange(inputValue, value)}  />
       <div className="max-w-7xl grid grid-cols-1 gap-4 gap-y-10 lg:grid-cols-2 pt-14 px-4 mx-auto flex-auto ">
         {filteredTasks?.map((task: Task) => (
           <div
@@ -82,8 +83,11 @@ const TasksView = ({ tasks }) => {
               <p className="text-base font-light leading-relaxed text-inherit">
                 Město: <span className="font-bold">{task.city}</span>
               </p>
-              <p className="text-base mb-6 font-light leading-relaxed text-inherit">
+              <p className="text-base font-light leading-relaxed text-inherit">
                 Cena: <span className="font-bold">{task.price}Kč</span>{" "}
+              </p>
+              <p className="text-base mb-4 font-light leading-relaxed text-inherit">
+                Kategorie: <span className="font-bold">{task.category}</span>
               </p>
               <Link
                 href={`/tasks/${task.id}`}
