@@ -22,13 +22,13 @@ const Header = async () => {
             {user?.user_metadata.avatar_url ? <Image src={user?.user_metadata.avatar_url} width={30} height={30} alt="Avatar Icon" className="rounded-full" /> : <span>{user.email}</span>}
             <form action={signOut}>
               <button type="submit" className="text-neutral-400 transition-all hover:text-black/80">
-                SignOut
+                Odhlásit
               </button>
             </form>
           </div>
         ) : (
-          <button className="text-neutral-400 transition-all hover:text-black/80">
-            <Link href={'/login'} /><span>Login</span>
+          <button className="text-neutral-400 transition-all hover:text-black/80 hidden md:block">
+            <Link href={'/login'} /><span>Přihlásit</span>
           </button>
         )}
       </nav>

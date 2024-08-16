@@ -10,7 +10,6 @@ import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import SwiperInterface from "swiper"
-import { useRouter } from "next/navigation"
 import DeleteImageForm from "./DeleteImageForm"
 
 
@@ -19,9 +18,9 @@ type ImageProps = {
     imageUrl: string
 }
 
-const ImageSwiperGallery = ({ images }) => {
+const ImageSwiperGallery = ({ images , user }) => {
 
-    const router = useRouter()
+   
     const [thumbsSwiper, setThumbsSwiper] = useState<SwiperInterface | null>(null)
     
 
@@ -33,13 +32,13 @@ const ImageSwiperGallery = ({ images }) => {
                 loop={true}
                 spaceBetween={10}
                 navigation={true}
-                thumbs={{ swiper: thumbsSwiper }}
+                thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
                 modules={[FreeMode, Navigation, Thumbs]}
                 className="h-96 md:w-2/3 w-full mb-2" >
-                {images.map((image: ImageProps) => (
-                    <SwiperSlide key={image.id}>
+                {images.map((image, index) => (
+                    <SwiperSlide key={index}>
                         <div className="flex items-center justify-center">
-                            <Image src={image.imageUrl} sizes="100vw" fill alt="Fotka inzerátu" className="object-contain px-1" />                                                                                  
+                            <Image src={image.tasksImages.imageUrl} fill alt="Fotka inzerátu" className="object-contain px-1"/>                                                                                  
                         </div>
                     </SwiperSlide>
                 ))}
@@ -53,11 +52,13 @@ const ImageSwiperGallery = ({ images }) => {
                 watchSlidesProgress={true}
                 modules={[FreeMode, Navigation, Thumbs]}
                 className="h-[100px] md:w-4/5 w-full">
-                {images.map((image:ImageProps) => (
-                    <SwiperSlide key={image.id}>
+                {images.map((image,index) => (
+                    <SwiperSlide key={index}>
                         <div className="h-full relative cursor-pointer">
-                            <Image src={image.imageUrl} sizes="100vw" fill alt="Galerie fotek inzerátu" className="border-2 rounded-md border-gray-600 object-contain z-10" />
-                            <DeleteImageForm imageId={image.id} imageUrl={image.imageUrl} />                            
+                            <Image src={image.tasksImages.imageUrl} sizes="100vw" fill alt="Galerie fotek inzerátu" className="border-2 rounded-md border-gray-600 object-contain z-10" />                            
+
+                            <DeleteImageForm imageId={image.tasksImages.id} imageUrl={image.tasksImages.imageUrl} />                            
+                            
                         </div>                        
                     </SwiperSlide>
                 ))}

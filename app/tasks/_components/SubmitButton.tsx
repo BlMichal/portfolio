@@ -1,16 +1,19 @@
 import { Save } from "lucide-react"
 import { useFormStatus } from "react-dom"
 
-export default function SubmitButton() {
+
+export default function SubmitButton({clasName, btnType}) {
 
     const { pending } = useFormStatus()
 
     return (
         <button
-            className='bg-orange-500 text-white mt-6 font-bold py-2 px-4 rounded'
-            disabled={pending}  // Disable the button during upload                
+            type={btnType}
+            className={`mt-6 font-bold py-2 px-4 rounded ${clasName}`}
+            disabled={pending}           
         >
-            {pending ? <span className="flex gap-2"><Save className="animate-pulse" /> Ukladám...</span> : 'Uložit'}
+            {pending ? <div><Save className="animate-pulse mx-auto" />
+                </div> : <span>Uložit</span>}
         </button>
     )
 }

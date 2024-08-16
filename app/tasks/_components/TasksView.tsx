@@ -49,7 +49,7 @@ const TasksView = ({ tasks }) => {
     setFilteredTasks(filtered);
   };
 
-
+  
 
   return (
     <div className="max-w-7xl mx-auto flex-auto">
@@ -68,7 +68,7 @@ const TasksView = ({ tasks }) => {
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   alt="Fotogragie inzerátu"
-                  className="object-cover hover:scale-[0.9] rounded-2xl"
+                  className="object-cover rounded-2xl"
                 />
               ) : (
                 <p className="text-center mt-16 font-bold">

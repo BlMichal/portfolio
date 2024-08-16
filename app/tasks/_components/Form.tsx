@@ -1,9 +1,13 @@
+'use client'
+
 import { createTask } from "@/lib/actions";
+import SubmitButton from "./SubmitButton";
+
 
 const Form = () => {
   return (
-    <section className="min-h-screen-content flex w-full justify-center ">
-      <form action={createTask} className="max-w-lg mx-auto h-full flex-1 md:border md:rounded-2xl md:border-black md:mt-20 px-6 py-2 md:shadow-[8px_8px_0px_0px_rgba(109,40,217)]">
+    
+      <form action={createTask} className="w-full max-w-lg mx-auto h-full flex-1 md:border md:rounded-2xl md:border-black mt-4 px-6 py-2 md:shadow-[8px_8px_0px_0px_rgba(109,40,217)]">
         <div className="relative z-0 w-full mb-5 mt-5 group">
           <input
             type="text"
@@ -103,15 +107,16 @@ const Form = () => {
             </label>
             <select
               id="category"
-              name="category"              
+              name="category"           
+                           
               className="bg-gray-50 border border-gray-300 mt-2 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-700 dark:focus:border-orange-400"
               required
             >
-              <option disabled selected>Vyberte možnost</option>
-              <option>Elektronika</option>
-              <option>Auto/Moto</option>              
-              <option>Drogérie</option>              
-              <option>Ostatní</option>              
+          <option disabled>Vyberte možnost</option>              
+          <option value='Elektronika'>Elektronika</option>
+          <option value='Auto/Moto'>Auto/Moto</option>
+          <option value='Drogérie'>Drogérie</option>
+          <option value='Ostatní'>Ostatní</option>          
             </select>
           </div>
         <div>
@@ -129,15 +134,8 @@ const Form = () => {
             placeholder="Detaily o produktu..."
           ></textarea>
         </div>
-        <button
-          type="submit"
-          className="text-black border-black border my-6  focus:ring-4 focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
-        >
-          Uložit
-        </button>
+        <SubmitButton clasName='bg-white w-28 border-gray-800/20 border-2' btnType='submit' />
       </form>
-      
-    </section>
   );
 };
 

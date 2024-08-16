@@ -22,14 +22,14 @@ const Navbar = ({user}) => {
             <button              
               className="flex items-center relative hover:text-black text-neutral-400 group px-2 py-3 transition-all group"
             >
-              <span onClick={()=>router.replace('/')} className="transition-all text-xl">Home</span>
+              <span onClick={()=>router.replace('/tasks')} className="transition-all text-xl">Inzeráty</span>
               <span className=" transition-all group-hover:translate-y-0.5">
                 <ChevronsDown />
               </span>
               <div className="absolute top-12 w-auto hidden flex-col gap-4 px-4 rounded-lg bg-white py-3 shadow-md transition-all group-hover:flex z-[999]">
                 {/* DROPDOWN ITEMS */}
-                <Dropdown href='tasks/create' >Create list</Dropdown>
-                <Dropdown href='tasks/'>Tasks list</Dropdown>
+                <Dropdown href='tasks/create' >Vytvořit inzerát</Dropdown>
+                <Dropdown href='tasks/'>Seznam inzerátů</Dropdown>
               </div>
             </button>
           </li>
@@ -37,17 +37,9 @@ const Navbar = ({user}) => {
             <button              
               className="flex items-center relative hover:text-black text-neutral-400 group px-2 py-3 transition-all group"
             >
-              <span onClick={()=>router.replace('/')} className="transition-all text-xl">About</span>            
+              <span onClick={()=>router.replace('/')} className="transition-all text-xl">Domů</span>            
             </button>
-          </li>
-          <li className="mr-[2rem]">
-            <button              
-              className="flex items-center relative hover:text-black text-neutral-400 group px-2 py-3 transition-all group"
-            >
-              <span onClick={()=>router.replace('/')} className="transition-all text-xl">Projects</span>
-             
-            </button>
-          </li>          
+          </li>                
         </ul>
 
         {/* Mobile nav */}        
@@ -69,8 +61,8 @@ const Navbar = ({user}) => {
             </div>
               <div className="group-hover:flex gap-2 hidden flex-col px-4 rounded-lg  bg-white py-4 shadow-md transition-all z-[999]">
                 {/* DROPDOWN ITEMS */} 
-                <Dropdown href='tasks/create' >Create list</Dropdown>
-                <Dropdown href='tasks/'>Tasks list</Dropdown>               
+                <Dropdown href='tasks/create' >Vytvořit inzerát</Dropdown>
+                <Dropdown href='tasks/'>Seznam inzerátů</Dropdown>            
               </div>
             </button>
           </li>
@@ -81,13 +73,9 @@ const Navbar = ({user}) => {
             ><div className="flex">
               <span onClick={()=>router.replace('/')} className="transition-all text-xl">Home</span>
               <span className=" transition-all group-hover:translate-y-0.5">
-                <ChevronsDown />
+               
               </span>
-            </div>
-              <div className="group-hover:flex gap-2 hidden flex-col px-4 rounded-lg  bg-white py-4 shadow-md transition-all z-[999]">
-                {/* DROPDOWN ITEMS */}
-                
-              </div>
+            </div>              
             </button>
           </li>                 
           <div className="mt-10">

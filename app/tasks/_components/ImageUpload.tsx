@@ -16,9 +16,9 @@ export default function ImageUpload({ variant, pageId }: UploadFormProps) {
 
   const labelClass = {
     default:
-      "flex flex-col items-center justify-center w-full h-64 border-2 border-orange-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500",
+      "flex flex-col items-center justify-center w-full h-64 border-2 border-purple-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500",
     compact:
-      "flex=flex-col items-center justify-center w-full h-20 border-2 my-1 border-orange-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500",
+      "flex=flex-col items-center justify-center w-full h-20 border-2 my-1 border-purple-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500",
   };
 
   const pathname = usePathname()
@@ -69,6 +69,7 @@ export default function ImageUpload({ variant, pageId }: UploadFormProps) {
       }
     }
     setImagePreview([])
+    
     if (pathname === `/tasks/create/${pageId}`) {
       router.push('/tasks')
     }
@@ -83,7 +84,7 @@ export default function ImageUpload({ variant, pageId }: UploadFormProps) {
       className="md:w-4/6 w-5/6 flex flex-col items-end"
     >
       {imagePreview.length > 0 && (
-        <div className="w-24 h-24 gap-1 flex flex-row-reverse">
+        <div className="max-w-7xl flex flex-wrap my-1">
           {imagePreview.map((src, index) => (
             <Image
               key={index}
@@ -100,8 +101,7 @@ export default function ImageUpload({ variant, pageId }: UploadFormProps) {
         <div className="flex flex-col items-center justify-center md:pt-5 md:pb-6">
           {/* SVG */}
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            <span className="font-semibold">Kliknout</span> nebo přetáhnout
-            obrázek
+            <span className="font-semibold">Kliknout</span> a vybrat obrázek
           </p>
           <p className="text-xs text-gray-500 dark:text-gray-400">
             formát SVG, PNG, JPG
@@ -116,7 +116,7 @@ export default function ImageUpload({ variant, pageId }: UploadFormProps) {
           accept="image/png, image/gif, image/jpg"
         />
       </label>
-      <SubmitButton />
+      <SubmitButton clasName='border-2 w-28' btnType='submit' />
     </form>
   );
 }

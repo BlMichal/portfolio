@@ -87,9 +87,7 @@ export async function deleteImages(formData) {
   const id = formData.get("id");
   const imageUrl = formData.get("imageUrl");
 
-  const imageId = imageUrl.split("/").pop();
-
-  
+  const imageId = imageUrl.split("/").pop();  
 
   const { error } = await supabase.from("tasksImages").delete().eq("id", id);
 

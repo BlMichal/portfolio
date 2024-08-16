@@ -1,8 +1,8 @@
 const FilterBar = ({ inputValue, selectValue }) => {
 
   return (
-    <form className="max-w-sm mx-10 flex justify-between items-center ">
-      <div>
+    <form className="max-w-sm mx-10 flex justify-between gap-x-2 items-center ">
+      <>
       <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Hledej</label>
       <div className="relative">
         
@@ -13,19 +13,19 @@ const FilterBar = ({ inputValue, selectValue }) => {
         </div>
         <input onChange={(e) => inputValue(e.target.value)} type="search" id="default-search" className="block w-full p-4 ps-10 text-sm text-gray-900 border-black border-2 rounded-lg" placeholder="Vyhledej inzerát" required />
       </div>
-      </div>
-      <div className="">
+      </>
+      <>
         <select
           onChange={(e) => selectValue(e.target.value)}
           className="block max-w-sm p-4 text-sm border-black border-2 rounded-lg"          
-        >
-          <option value=''>Vše</option>
+        >          
+          <option value=''>Kategorie - vše</option>
           <option value='Elektronika'>Elektronika</option>
           <option value='Auto/Moto'>Auto/Moto</option>
           <option value='Drogérie'>Drogérie</option>
           <option value='Ostatní'>Ostatní</option>
         </select>
-      </div>
+      </>
     </form>
 
 

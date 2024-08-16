@@ -7,7 +7,7 @@ const Hero = () => {
       <div className="mt-10 lg:pb-20 lg:mt-0 md:px-10 px-2 flex flex-col justify-center z-10 ">
         <div className="bg-white rounded-2xl p-8 relative shadow-2xl">
           <div className="content-[''] absolute top-8 md:top-6 left-3 h-4/5 rounded-full w-1 bg-purple-800"></div>
-          <h2 className="font-bold text-3xl pb-5">PROJECT TITLE</h2>
+          <h2 className="font-bold text-3xl pb-5">Inzeruj své věci</h2>
           <p className="max-w-xl">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut fuga rem
             aspernatur eligendi amet! Commodi magnam quasi, fugiat aperiam, eius
@@ -16,7 +16,7 @@ const Hero = () => {
           <div>
             <Link href={"/tasks"}>
               <button className="border mt-4 rounded-2xl p-4 bg-slate-500 hover:bg-slate-400 text-white">
-                TASKLIST
+                Pokračovat
               </button>
             </Link>
           </div>

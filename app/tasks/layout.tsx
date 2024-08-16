@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 
-
-
 const poppins = Poppins({ subsets: ["latin"],weight:['400','500',"600","700","300"] });
 
 export const metadata: Metadata = {
@@ -16,8 +14,8 @@ export default function TasksLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <main>
+    <main className={`${poppins.className}`}>
   {children}    
     </main>
   );
-}
+};
