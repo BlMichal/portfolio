@@ -82,6 +82,7 @@ export async function updateTask(formData: FormData) {
 }
 
 export async function deleteImages(formData) {
+  
   const supabase = createClient();
 
   const id = formData.get("id");

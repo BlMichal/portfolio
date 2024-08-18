@@ -1,19 +1,16 @@
 import { deleteImages } from "@/lib/actions";
 import { Trash2 } from "lucide-react";
 
-type DeleteImageProps = {
-    imageId : string,
-    imageUrl: string
-}
 
 
-const DeleteImageForm = ({imageId , imageUrl}: DeleteImageProps ) => {
+
+const DeleteImageForm = ({id , imageUrl}:{id:number, imageUrl:string} ) => {
   return (
     <form action={deleteImages} className="absolute top-0 right-0 z-[999]">
       <label htmlFor="id" className="text-white hidden">
         id
       </label>
-      <input type="hidden" name="id" value={imageId} />
+      <input type="hidden" name="id" value={id} />
       <label htmlFor="imageUrl" className="text-white hidden">
         imageurl
       </label>

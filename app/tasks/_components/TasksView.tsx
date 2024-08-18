@@ -2,23 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import FilterBar from "./FilterBar";
-
-type TaskImage = {
-  imageUrl: string;
-  id_tasks?: number;
-};
-
-type Task = {
-  id: number;
-  user_id: string;
-  city: string;
-  title: string;
-  price: number;
-  category: string;
-  tasksImages: TaskImage[];
-};
 
 const TasksView = ({ tasks }) => {
 
@@ -26,19 +11,18 @@ const TasksView = ({ tasks }) => {
   const [inputValue, setInputValue] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
 
- 
-  const handleFilterChange = (newFilterValue, newCategory) => {
+  function removeAccents(str: string) {
+    return str
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase();
+  }
+
+  const handleFilterChange = (newFilterValue: string, newCategory: string) => {
     setInputValue(newFilterValue);
     setSelectedCategory(newCategory);
 
-    function removeAccents(str: string) {
-      return str
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .toLowerCase();
-    }
-
-    const filtered = tasks.filter((task) => {
+    const filtered = tasks.filter((task: AdProps) => {
       const titleMatch = removeAccents(task.title).includes(removeAccents(newFilterValue));
       const descMatch = removeAccents(task.desc).includes(removeAccents(newFilterValue));
       const categoryMatch = newCategory ? task.category === newCategory : true;
@@ -49,14 +33,12 @@ const TasksView = ({ tasks }) => {
     setFilteredTasks(filtered);
   };
 
-  
-
   return (
     <div className="max-w-7xl mx-auto flex-auto">
-      <FilterBar   inputValue={(value) => handleFilterChange(value, selectedCategory)} 
-                  selectValue={(value) => handleFilterChange(inputValue, value)}  />
+      <FilterBar inputValue={(value) => handleFilterChange(value, selectedCategory)}
+        selectValue={(value) => handleFilterChange(inputValue, value)} />
       <div className="max-w-7xl grid grid-cols-1 gap-4 gap-y-10 lg:grid-cols-2 pt-14 px-4 mx-auto flex-auto ">
-        {filteredTasks?.map((task: Task) => (
+        {filteredTasks?.map((task: AdProps) => (
           <div
             key={task.id}
             className="h-[300px] border-2 flex flex-col border-customColor1 justify-between bg-slate-100 shadow-md rounded-lg last:mb-10"
@@ -68,7 +50,7 @@ const TasksView = ({ tasks }) => {
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   alt="Fotogragie inzerátu"
-                  className="object-cover rounded-2xl"
+                  className="object-cover hover: rounded-2xl"
                 />
               ) : (
                 <p className="text-center mt-16 font-bold">
@@ -81,13 +63,13 @@ const TasksView = ({ tasks }) => {
                 {task.title}
               </h2>
               <p className="text-base font-light leading-relaxed text-inherit">
-                Město: <span className="font-bold">{task.city}</span>
-              </p>
-              <p className="text-base font-light leading-relaxed text-inherit">
                 Cena: <span className="font-bold">{task.price}Kč</span>{" "}
               </p>
-              <p className="text-base mb-4 font-light leading-relaxed text-inherit">
-                Kategorie: <span className="font-bold">{task.category}</span>
+              <p className="text-base font-light leading-relaxed text-inherit">
+                Město: <span className="font-bold">{task.city}</span>
+              </p>
+              <p className="text-base mb-6 font-light leading-relaxed text-inherit">
+                Kategorie: <span className="font-bold">{task.category}</span>{" "}
               </p>
               <Link
                 href={`/tasks/${task.id}`}

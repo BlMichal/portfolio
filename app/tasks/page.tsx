@@ -9,20 +9,11 @@ export default async function TaskPage() {
   const { data: tasks, error } = await supabase
     .from("tasks")
     .select("*, tasksImages(imageUrl)")
-    
-
-  const { data: { user }} = await supabase.auth.getUser();
-  const userId = user?.id;
-  const isAdmin = user?.email;
-
-  // if (!user) {
-  //   return redirect("/login");
-  // }
-
+   
   return (
     <section className="bg-peak-background min-h-screen-content flex">
-      <AsideBar/>      
-     <TasksView tasks={tasks} />
+      <AsideBar/>
+      <TasksView tasks={tasks} />    
     </section>
   );
 }

@@ -17,7 +17,7 @@ const Navbar = ({user}) => {
 
   return (          
       <div className="flex items-center font-medium bg-white" >     
-        <ul className="md:flex hidden items-center gap-3 font-[Poppins]">
+        <ul className="md:flex hidden items-center gap-3">
           <li>
             <button              
               className="flex items-center relative hover:text-black text-neutral-400 group px-2 py-3 transition-all group"
@@ -54,14 +54,14 @@ const Navbar = ({user}) => {
               className="flex flex-col hover:text-black text-neutral-400 group transition-all group "
               
             ><div className="flex">
-              <span onClick={()=>router.replace('/')} className="transition-all text-xl">Home</span>
+              <span className="transition-all text-xl">Inzeráty</span>
               <span className=" transition-all group-hover:translate-y-0.5">
                 <ChevronsDown />
               </span>
             </div>
               <div className="group-hover:flex gap-2 hidden flex-col px-4 rounded-lg  bg-white py-4 shadow-md transition-all z-[999]">
                 {/* DROPDOWN ITEMS */} 
-                <Dropdown href='tasks/create' >Vytvořit inzerát</Dropdown>
+                <Dropdown href='tasks/create'>Vytvořit inzerát</Dropdown>
                 <Dropdown href='tasks/'>Seznam inzerátů</Dropdown>            
               </div>
             </button>
@@ -71,9 +71,8 @@ const Navbar = ({user}) => {
               className="flex flex-col hover:text-black text-neutral-400 group py-3 transition-all group "
               
             ><div className="flex">
-              <span onClick={()=>router.replace('/')} className="transition-all text-xl">Home</span>
-              <span className=" transition-all group-hover:translate-y-0.5">
-               
+              <span onClick={()=>router.replace('/')} className="transition-all text-xl">Domů</span>
+              <span className=" transition-all group-hover:translate-y-0.5">               
               </span>
             </div>              
             </button>
@@ -95,9 +94,9 @@ const Navbar = ({user}) => {
         )}
           </div>          
         </ul>        
-        <button onClick={() => setOpen(!open)} className="fixed p-2 md:hidden z-50">
+        <button onClick={() => setOpen(!open)} className="fixed px-4 py-2 md:hidden z-50">
             {open ? "X" : "☰"}
-          </button>     
+        </button>     
     </div>   
   );
 };

@@ -13,17 +13,12 @@ import SwiperInterface from "swiper"
 import DeleteImageForm from "./DeleteImageForm"
 
 
-type ImageProps = {
-    id : string,
-    imageUrl: string
-}
 
 const ImageSwiperGallery = ({ images , user }) => {
 
-   
+   console.log(images)
     const [thumbsSwiper, setThumbsSwiper] = useState<SwiperInterface | null>(null)
     
-
     return (
         <section className="bg-black py-2">
             {images.length > 0 ?  
@@ -35,10 +30,10 @@ const ImageSwiperGallery = ({ images , user }) => {
                 thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
                 modules={[FreeMode, Navigation, Thumbs]}
                 className="h-96 md:w-2/3 w-full mb-2" >
-                {images.map((image, index) => (
-                    <SwiperSlide key={index}>
+                {images.map((image:AdImagesProps) => (
+                    <SwiperSlide key={image.id}>
                         <div className="flex items-center justify-center">
-                            <Image src={image.tasksImages.imageUrl} fill alt="Fotka inzerátu" className="object-contain px-1"/>                                                                                  
+                            <Image src={image.imageUrl} fill alt="Fotka inzerátu" className="object-contain px-1"/>                                                                                  
                         </div>
                     </SwiperSlide>
                 ))}
@@ -52,13 +47,13 @@ const ImageSwiperGallery = ({ images , user }) => {
                 watchSlidesProgress={true}
                 modules={[FreeMode, Navigation, Thumbs]}
                 className="h-[100px] md:w-4/5 w-full">
-                {images.map((image,index) => (
-                    <SwiperSlide key={index}>
+                {images.map((image:AdImagesProps) => (
+                    <SwiperSlide key={image.id}>
                         <div className="h-full relative cursor-pointer">
-                            <Image src={image.tasksImages.imageUrl} sizes="100vw" fill alt="Galerie fotek inzerátu" className="border-2 rounded-md border-gray-600 object-contain z-10" />                            
-
-                            <DeleteImageForm imageId={image.tasksImages.id} imageUrl={image.tasksImages.imageUrl} />                            
-                            
+                            <Image src={image.imageUrl} sizes="100vw" fill alt="Galerie fotek inzerátu" className="border-2 rounded-md border-gray-600 object-contain z-10" />                            
+                            {user === image.tasks.user_id &&
+                            <DeleteImageForm id={image.id} imageUrl={image.imageUrl} />                            
+                            }
                         </div>                        
                     </SwiperSlide>
                 ))}

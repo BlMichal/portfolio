@@ -1,7 +1,7 @@
 const FilterBar = ({ inputValue, selectValue }) => {
 
   return (
-    <form className="max-w-sm mx-10 flex justify-between gap-x-2 items-center ">
+    <form className="max-w-sm mx-10 flex flex-col md:flex-row justify-between gap-2 md:items-center">
       <>
       <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Hledej</label>
       <div className="relative">

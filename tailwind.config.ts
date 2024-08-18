@@ -10,6 +10,8 @@ const config: Config = {
     extend: {
       minHeight: {
         'screen-content': 'calc(100vh - 65px)', 
+        'screen-content-md-footer': 'calc(100vh - 165px)', 
+        'screen-content-footer': 'calc(100vh - 129px)', 
       },
       colors: {
         customColor1: "rgb(123,120,163)",

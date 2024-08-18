@@ -3,11 +3,10 @@ import Form from '../_components/Form'
 
 const UploadAdvertisementImages = () => {
   return (
-    <section className='flex flex-col justify-center items-center mt-4'>
-      <h1 className='font-mono text-3xl font-semibold'>Vytvořit inzerát</h1>
+    <section className='flex flex-col items-center md:min-h-screen-content-footer min-h-screen-content-md-footer '>
+      <h1 className='font-mono text-3xl font-semibold mt-8 '>Vytvořit inzerát</h1>
       <p className='my-2'><span className='text-purple-700 font-bold'>1 krok: </span>vyplňte údaje o produktu</p>
-      <Form/>
-
+      <Form />
     </section>
   )
 }

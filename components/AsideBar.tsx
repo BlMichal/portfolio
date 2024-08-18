@@ -8,10 +8,9 @@ import {
   Star,
 } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const AsideBar = () => {
-  const [isOpen, setIsOpen] = useState(false);
 
   const menus = [
     { id: 1, title: "Nový inzerát", src: <FilePlus2 />, href: '/tasks/create' },
@@ -19,6 +18,26 @@ const AsideBar = () => {
     // { id: 3, title: "Moje inzeráty", src: <BookOpenCheck />, href:'/tasks/' },
     // { id: 4, title: "Oblíbené inzeráty", src: <Star />, href:'/' },
   ];
+  const [isOpen, setIsOpen] = useState(false);
+
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setIsOpen(false);
+      }   
+    };
+
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+
 
   return (
     <aside className="">

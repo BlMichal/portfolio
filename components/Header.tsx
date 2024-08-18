@@ -11,7 +11,7 @@ const Header = async () => {
   const { data: { user }} = await supabase.auth.getUser();
 
   return (
-    <header className="max-w-7xl bg-white z-50 flex items-center justify-between px-8 mx-auto">
+    <header className="max-w-7xl bg-white z-50 flex items-center md:px-4 pr-16 justify-between mx-auto">
       <div className="py-4">
         <Image src="/logo.png" alt="Logo" width={50} height={50} className="block w-full h-auto" />
       </div>
@@ -28,7 +28,7 @@ const Header = async () => {
           </div>
         ) : (
           <button className="text-neutral-400 transition-all hover:text-black/80 hidden md:block">
-            <Link href={'/login'} /><span>Přihlásit</span>
+            <Link href={'/login'}><span>Přihlásit</span></Link>
           </button>
         )}
       </nav>

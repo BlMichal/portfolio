@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 
@@ -15,7 +16,8 @@ export default function TasksLayout({
 }>) {
   return (
     <main className={`${poppins.className}`}>
-  {children}    
+  {children}
+  <Footer/>    
     </main>
   );
 };

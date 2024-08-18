@@ -4,12 +4,9 @@ import { deleteTask } from "@/lib/actions"
 import { Trash2 } from "lucide-react"
 import { useState } from "react"
 
-type DeleteImageProps = {
-    taskId : string | number,
-    className?: string
-}
 
-export default function EditTodo({ taskId , className }:DeleteImageProps) {
+
+export default function EditTodo({ taskId , className }) {
 
     const [showModal, setShowModal] = useState(false) 
     

@@ -5,9 +5,8 @@ import SubmitButton from "./SubmitButton";
 
 
 const Form = () => {
-  return (
-    
-      <form action={createTask} className="w-full max-w-lg mx-auto h-full flex-1 md:border md:rounded-2xl md:border-black mt-4 px-6 py-2 md:shadow-[8px_8px_0px_0px_rgba(109,40,217)]">
+  return (    
+      <form action={createTask} className="w-full max-w-lg md:border md:rounded-2xl md:border-black mt-4 px-6 py-2 md:shadow-[8px_8px_0px_0px_rgba(109,40,217)]">
         <div className="relative z-0 w-full mb-5 mt-5 group">
           <input
             type="text"
@@ -101,14 +100,12 @@ const Form = () => {
             <label
               htmlFor="category"
               className="peer-focus:font-medium text-sm text-gray-500 dark:text-gray-400 py-2"
-            >
-              {" "}
+            >             
               Kategorie
             </label>
             <select
               id="category"
-              name="category"           
-                           
+              name="category"
               className="bg-gray-50 border border-gray-300 mt-2 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-700 dark:focus:border-orange-400"
               required
             >

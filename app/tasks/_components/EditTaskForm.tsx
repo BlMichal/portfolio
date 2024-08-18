@@ -4,19 +4,10 @@ import { updateTask } from "@/lib/actions";
 import { PencilRuler } from "lucide-react";
 import { useState } from "react";
 
-type EditForm = {
-  desc: string;
-  title: string;
-  price: number;
-  postcode: number;
-  city: string;
-  category: string;
-  mobileNumber: number;
-};
 
 export default function EditTodo({ task, className }) {
   const [showModal, setShowModal] = useState(false);
-  const [formData, setFormData] = useState<EditForm>({
+  const [formData, setFormData] = useState({
     desc: task.desc,
     title: task.title,
     price: task.price,
@@ -136,13 +127,11 @@ export default function EditTodo({ task, className }) {
                   className="bg-gray-50 border border-gray-300 mt-2 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-700 dark:focus:border-orange-400"
                   required
                 >
-                  <option disabled selected>
-                    Vyberte možnost
-                  </option>
-                  <option>Elektronika</option>
-                  <option>Auto/Moto</option>
-                  <option>Drogérie</option>
-                  <option>Ostatní</option>
+                  <option disabled>Vyberte možnost</option>              
+                  <option value='Elektronika'>Elektronika</option>
+                  <option value='Auto/Moto'>Auto/Moto</option>
+                  <option value='Drogérie'>Drogérie</option>
+                  <option value='Ostatní'>Ostatní</option>  
                 </select>
               </div>
               <div className="mb-4">

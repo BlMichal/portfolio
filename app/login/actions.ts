@@ -23,10 +23,10 @@ export async function login(formData: FormData) {
 
 
   revalidatePath("/", "layout");
-  redirect("/");
+  redirect("/tasks");  
 }
 
-export async function signup(formData: FormData) {
+export async function signUp(formData: FormData) {
   const supabase = createClient();
 
   // type-casting here for convenience
@@ -50,8 +50,7 @@ export async function signOut() {
   const supabase = createClient();
   const { error } = await supabase.auth.signOut();
 
-  revalidatePath("/", "layout");
-  redirect("/");
+  revalidatePath("/", "layout");  
 }
 
 
