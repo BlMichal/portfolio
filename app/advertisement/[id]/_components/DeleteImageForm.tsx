@@ -1,10 +1,10 @@
-import { deleteImages } from "@/lib/actions";
+import { deleteAdImages } from "@/lib/actions";
 import { Trash2 } from "lucide-react";
 
 
-const DeleteImageForm = ({id , imageUrl}:{id:number, imageUrl:string} ) => {
+const DeleteImageForm = ({ id, imageUrl }: { id: number, imageUrl: string }) => {
   return (
-    <form action={deleteImages} className="absolute top-0 right-0 z-[999]">
+    <form action={deleteAdImages} className="absolute top-0 right-0 z-[999]">
       <label htmlFor="id" className="text-white hidden">
         id
       </label>

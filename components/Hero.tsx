@@ -14,7 +14,7 @@ const Hero = () => {
             hic in harum recusandae molestias nam atque totam dolor enim?
           </p>
           <div>
-            <Link href={"/tasks"}>
+            <Link href={"/advertisement"}>
               <button className="border mt-4 rounded-2xl p-4 bg-slate-500 hover:bg-slate-400 text-white">
                 Pokračovat
               </button>

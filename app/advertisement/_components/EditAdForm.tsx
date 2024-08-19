@@ -1,20 +1,20 @@
 "use client";
 
-import { updateTask } from "@/lib/actions";
+import { updateAd } from "@/lib/actions";
 import { PencilRuler } from "lucide-react";
 import { useState } from "react";
 
 
-export default function EditTodo({ task, className }) {
+export default function EditAdForm({ advertisement, className }) {
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
-    desc: task.desc,
-    title: task.title,
-    price: task.price,
-    postcode: task.postcode,
-    city: task.city,
-    category: task.category,
-    mobileNumber: task.mobileNumber,
+    desc: advertisement.desc,
+    title: advertisement.title,
+    price: advertisement.price,
+    postcode: advertisement.postcode,
+    city: advertisement.city,
+    category: advertisement.category,
+    mobileNumber: advertisement.mobileNumber,
   });
 
   const handleChange = (e) =>
@@ -26,7 +26,7 @@ export default function EditTodo({ task, className }) {
         onClick={() => setShowModal(true)}
         className={`flex items-center justify-center gap-1 bg-white hover:bg-gray-400 text-black font-bold py-2 px-4 ${className}`}
       >
-       <PencilRuler /><span>Upravit</span>
+        <PencilRuler /><span>Upravit</span>
       </button>
       {showModal && (
         <div className="fixed inset-0 w-full h-full bg-gray-800 bg-opacity-75 flex justify-center items-center md:px-4 z-50">
@@ -38,11 +38,11 @@ export default function EditTodo({ task, className }) {
               &times;
             </span>
             <form
-              action={updateTask}
+              action={updateAd}
               onSubmit={() => setShowModal(false)}
               className="mt-4"
             >
-              <input type="hidden" name="id" value={task.id} />
+              <input type="hidden" name="id" value={advertisement.id} />
               <div className="mb-4">
                 <label htmlFor="title" className="block text-gray-300 mb-2">
                   Název
@@ -127,11 +127,11 @@ export default function EditTodo({ task, className }) {
                   className="bg-gray-50 border border-gray-300 mt-2 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-700 dark:focus:border-orange-400"
                   required
                 >
-                  <option disabled>Vyberte možnost</option>              
+                  <option disabled>Vyberte možnost</option>
                   <option value='Elektronika'>Elektronika</option>
                   <option value='Auto/Moto'>Auto/Moto</option>
                   <option value='Drogérie'>Drogérie</option>
-                  <option value='Ostatní'>Ostatní</option>  
+                  <option value='Ostatní'>Ostatní</option>
                 </select>
               </div>
               <div className="mb-4">

@@ -1,7 +1,7 @@
 import React from 'react'
 import Form from '../_components/Form'
 
-const UploadAdvertisementImages = () => {
+const UploadadvertisementisementImages = () => {
   return (
     <section className='flex flex-col items-center md:min-h-screen-content-footer min-h-screen-content-md-footer '>
       <h1 className='font-mono text-3xl font-semibold mt-8 '>Vytvořit inzerát</h1>
@@ -11,4 +11,4 @@ const UploadAdvertisementImages = () => {
   )
 }
 
-export default UploadAdvertisementImages
+export default UploadadvertisementisementImages

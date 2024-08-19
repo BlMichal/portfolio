@@ -11,10 +11,10 @@ const NavbarMenu = [
   {
     id: 1,
     title: "Inzeráty",
-    href: "/tasks",
+    href: "/advertisement",
     dropdown: [
-      { id: 1.1, title: "Vytvořit inzerát", href: "/tasks/create" },
-      { id: 1.2, title: "Seznam inzerátů", href: "/tasks/" },
+      { id: 1.1, title: "Vytvořit inzerát", href: "/advertisement/create" },
+      { id: 1.2, title: "Seznam inzerátů", href: "/advertisement/" },
     ],
   },
   {

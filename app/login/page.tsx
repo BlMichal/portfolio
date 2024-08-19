@@ -1,5 +1,5 @@
 import { createClient } from "@/utils/supabase/server";
-import { login, oAuthSignIn, signup } from "./actions";
+import { login, oAuthSignIn, signUp } from "./actions";
 import { redirect } from "next/navigation";
 
 export default async function LoginPage({
@@ -64,7 +64,7 @@ export default async function LoginPage({
       <button
         className="w-full bg-gray-200 text-gray-700 py-2 rounded-lg hover:bg-gray-300 transition duration-300"
         type="submit"
-        formAction={signup}
+        formAction={signUp}
       >
         Sign up
       </button>

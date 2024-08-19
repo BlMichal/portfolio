@@ -58,24 +58,24 @@ export default function ImageUpload({ variant, pageId }: UploadImageProps) {
       } else {
         const imageUrl = process.env.NEXT_PUBLIC_SUPABASE_BUCKET + fileName;
         const { data, error } = await supabase
-          .from("tasksImages")
+          .from("TabAdsImages")
           .insert([
             {
               imageUrl: imageUrl,
               id_tasks: pageId,
             },
           ])
-          .select();  
-          
-          if(error){
-            toast.error("Chyba při ukládání obrázku")
-          }
+          .select();
+
+        if (error) {
+          toast.error("Chyba při ukládání obrázku")
         }
+      }
     }
     setImagePreview([])
-    
-    if (pathname === `/tasks/create/${pageId}`) {
-      router.push('/tasks')
+
+    if (pathname === `/advertisement/create/${pageId}`) {
+      router.push('/advertisement')
     }
     else {
       router.refresh()

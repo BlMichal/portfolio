@@ -4,7 +4,7 @@ import { createClient } from "@/utils/supabase/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-export async function createTask(formData: FormData) {
+export async function createAd(formData: FormData) {
   const supabase = createClient();
 
   const title = formData.get("title");
@@ -18,7 +18,7 @@ export async function createTask(formData: FormData) {
   const userId = (await supabase.auth.getUser()).data.user?.id;
 
   const { data, error } = await supabase
-    .from("tasks")
+    .from("TabAdvertisement")
     .insert([
       {
         title: title,
@@ -34,8 +34,8 @@ export async function createTask(formData: FormData) {
     .select();
 
   if (data) {
-    revalidatePath("/tasks");
-    redirect(`/tasks/create/${data[0].id}/`);
+    revalidatePath("/advertisement");
+    redirect(`/advertisement/create/${data[0].id}/`);
   }
 
   if (error) {
@@ -43,22 +43,22 @@ export async function createTask(formData: FormData) {
   }
 }
 
-export async function deleteTask(formData: FormData) {
+export async function deleteAd(formData: FormData) {
   const supabase = createClient();
 
   const id = formData.get("id");
 
-  const { data, error } = await supabase.from("tasks").delete().eq("id", id);
+  const { data, error } = await supabase.from("TabAdvertisement").delete().eq("id", id);
 
   if (error) {
     throw new Error("Chyba při mazání dat");
   }
 
   revalidatePath("/");
-  redirect("/");
+  redirect("/advertisement");
 }
 
-export async function updateTask(formData: FormData) {
+export async function updateAd(formData: FormData) {
   const supabase = createClient();
 
   const id = formData.get("id");
@@ -71,7 +71,7 @@ export async function updateTask(formData: FormData) {
   const desc = formData.get("desc");
 
   const { data, error } = await supabase
-    .from("tasks")
+    .from("TabAdvertisement")
     .update({ desc, price, postcode, title, city, category, mobileNumber })
     .eq("id", id)
     .select();
@@ -79,20 +79,20 @@ export async function updateTask(formData: FormData) {
   if (error) {
     throw new Error("Chyba při ukládání dat");
   }
-  
+
   revalidatePath("/");
 }
 
-export async function deleteImages(formData) {
-  
+export async function deleteAdImages(formData) {
+
   const supabase = createClient();
 
   const id = formData.get("id");
   const imageUrl = formData.get("imageUrl");
 
-  const imageId = imageUrl.split("/").pop();  
+  const imageId = imageUrl.split("/").popadvertisement
 
-  const { error } = await supabase.from("tasksImages").delete().eq("id", id);
+  const { error } = await supabase.from("TabAdsImages").delete().eq("id", id);
 
   const { data, error: errorBucket } = await supabase.storage
     .from("adImages")
@@ -102,5 +102,5 @@ export async function deleteImages(formData) {
     throw new Error("Chyba při mazání dat");
   }
 
-  revalidatePath(`/tasks/${id}`);
+  revalidatePath(`/advertisement/${id}`);
 }

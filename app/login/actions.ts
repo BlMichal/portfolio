@@ -16,14 +16,14 @@ export async function login(formData: FormData) {
 
   const { error } = await supabase.auth.signInWithPassword(data);
 
-  if (error) { 
-            
+  if (error) {
+
     redirect(`/login?message=${error?.message}`);
   }
 
 
   revalidatePath("/", "layout");
-  redirect("/tasks");  
+  redirect("/advertisement");
 }
 
 export async function signUp(formData: FormData) {
@@ -50,22 +50,22 @@ export async function signOut() {
   const supabase = createClient();
   const { error } = await supabase.auth.signOut();
 
-  revalidatePath("/", "layout");  
+  revalidatePath("/", "layout");
 }
 
 
 export async function oAuthSignIn() {
 
   const supabase = createClient();
-  
-const { data, error } = await supabase.auth.signInWithOAuth({
-  provider: 'google',
-  options: {
-    redirectTo: 'http://localhost:3000/auth/callback',
-  },
-})
 
-if (data.url) {
-  redirect(data.url) // use the redirect API for your server framework
-}
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: 'google',
+    options: {
+      redirectTo: 'http://localhost:3000/auth/callback',
+    },
+  })
+
+  if (data.url) {
+    redirect(data.url) // use the redirect API for your server framework
+  }
 }

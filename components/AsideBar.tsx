@@ -13,9 +13,9 @@ import { useEffect, useState } from "react";
 const AsideBar = () => {
 
   const menus = [
-    { id: 1, title: "Nový inzerát", src: <FilePlus2 />, href: '/tasks/create' },
+    { id: 1, title: "Nový inzerát", src: <FilePlus2 />, href: '/advertisement/create' },
     { id: 2, title: "Domovská stránka", src: <House />, href: '/' },
-    // { id: 3, title: "Moje inzeráty", src: <BookOpenCheck />, href:'/tasks/' },
+    // { id: 3, title: "Moje inzeráty", src: <BookOpenCheck />, href:'/advertisement/' },
     // { id: 4, title: "Oblíbené inzeráty", src: <Star />, href:'/' },
   ];
   const [isOpen, setIsOpen] = useState(false);
@@ -25,7 +25,7 @@ const AsideBar = () => {
     const handleResize = () => {
       if (window.innerWidth <= 768) {
         setIsOpen(false);
-      }   
+      }
     };
 
     handleResize();
