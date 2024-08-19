@@ -7,13 +7,13 @@ import toast from 'react-hot-toast';
 import ImageUpload from '../../_components/ImageUpload';
 
 const CreateAdvertisement = ({ params }) => {
-  
+
   const router = useRouter();
 
   // Use useCallback to memoize the CheckIfExist function
   const CheckIfExist = useCallback(async () => {
     const supabase = createClient();
-    
+
     const { data: ads, error } = await supabase
       .from("TabAdvertisement")
       .select("id")

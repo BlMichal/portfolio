@@ -61,7 +61,7 @@ export async function oAuthSignIn() {
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'google',
     options: {
-      redirectTo: 'http://web-portfolio-ft8bdeame-michals-projects-f6c57532.vercel.app/auth/callback',
+      redirectTo: 'web-portfolio-k7addns2p-michals-projects-f6c57532.vercel.app/auth/callback',
     },
   })
 
