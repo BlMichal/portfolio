@@ -6,13 +6,14 @@ import { useState } from "react";
 import { usePathname } from 'next/navigation';
 import SubmitButton from "./SubmitButton";
 import Image from "next/image";
+import toast from "react-hot-toast";
 
-type UploadFormProps = {
+interface UploadImageProps {
   variant: "default" | "compact";
   pageId: string;
 };
 
-export default function ImageUpload({ variant, pageId }: UploadFormProps) {
+export default function ImageUpload({ variant, pageId }: UploadImageProps) {
 
   const labelClass = {
     default:
@@ -42,8 +43,7 @@ export default function ImageUpload({ variant, pageId }: UploadFormProps) {
     }
 
     for (const file of files) {
-      const image = file;
-      const fileExt = image.name.split(".").pop();
+      const fileExt = file.name.split(".").pop();
       const randomNumberGenerator = (Math.random() + 1).toString(36).substring(7) + Date.now().toString();
       const fileName = `${randomNumberGenerator}.${fileExt}`;
 
@@ -53,7 +53,7 @@ export default function ImageUpload({ variant, pageId }: UploadFormProps) {
 
       if (error) {
         {
-          /*ERROR*/
+          toast.error("Chyba při ukládání obrázku")
         }
       } else {
         const imageUrl = process.env.NEXT_PUBLIC_SUPABASE_BUCKET + fileName;
@@ -65,8 +65,12 @@ export default function ImageUpload({ variant, pageId }: UploadFormProps) {
               id_tasks: pageId,
             },
           ])
-          .select();
-      }
+          .select();  
+          
+          if(error){
+            toast.error("Chyba při ukládání obrázku")
+          }
+        }
     }
     setImagePreview([])
     

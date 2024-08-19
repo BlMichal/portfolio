@@ -2,8 +2,6 @@ import { deleteImages } from "@/lib/actions";
 import { Trash2 } from "lucide-react";
 
 
-
-
 const DeleteImageForm = ({id , imageUrl}:{id:number, imageUrl:string} ) => {
   return (
     <form action={deleteImages} className="absolute top-0 right-0 z-[999]">

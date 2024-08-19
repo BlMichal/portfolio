@@ -39,7 +39,7 @@ export async function createTask(formData: FormData) {
   }
 
   if (error) {
-    throw new Error("Failed to insert data");
+    throw new Error("Chyba při ukládání dat");
   }
 }
 
@@ -48,11 +48,12 @@ export async function deleteTask(formData: FormData) {
 
   const id = formData.get("id");
 
-  const { error } = await supabase.from("tasks").delete().eq("id", id);
+  const { data, error } = await supabase.from("tasks").delete().eq("id", id);
 
   if (error) {
-    console.log(error);
+    throw new Error("Chyba při mazání dat");
   }
+
   revalidatePath("/");
   redirect("/");
 }
@@ -76,8 +77,9 @@ export async function updateTask(formData: FormData) {
     .select();
 
   if (error) {
-    console.log(error);
+    throw new Error("Chyba při ukládání dat");
   }
+  
   revalidatePath("/");
 }
 
@@ -96,7 +98,9 @@ export async function deleteImages(formData) {
     .from("adImages")
     .remove([imageId]);
 
-  if (error) {
+  if (error || errorBucket) {
+    throw new Error("Chyba při mazání dat");
   }
+
   revalidatePath(`/tasks/${id}`);
 }

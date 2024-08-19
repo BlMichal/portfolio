@@ -29,7 +29,7 @@ const DetailAdPage = async ({ params }: { params: { id: string } }) => {
 
 
   return (
-    <section className="min-h-screen-content-md-footer md:min-h-screen-content-footer bg-slate-600">
+    <section className="min-h-screen-content-md-footer md:min-h-screen-content-footer bg-black/80">
       <div className="max-w-7xl mx-auto">
         <ImageSwiperGallery images={tasksImages} user={userId} />
       </div>
@@ -49,7 +49,6 @@ const DetailAdPage = async ({ params }: { params: { id: string } }) => {
             {/* Jenom uživatel který položku vytvořil, uvidí možnost DELETE/ UPDATE/ IMPORT IMAGE*/}
             {userId === task.user_id &&   
             <>
-
             <hr className="my-4" />        
               <div className="flex md:flex-row-reverse flex-col md:items-end">
                 

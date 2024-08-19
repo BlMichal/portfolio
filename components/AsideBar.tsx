@@ -43,7 +43,7 @@ const AsideBar = () => {
     <aside className="">
       <div
         className={`${isOpen ? "w-72" : "w-20"
-          } h-full bg-customColor1 duration-300 relative`}
+          } h-full bg-customColor1 md:duration-300 relative`}
       >
         <ArrowBigLeftDash size={35}
           className={`absolute cursor-pointer -right-4 top-9 border-2 rounded-full md:block z-10 hidden bg-white ${!isOpen && "rotate-180"

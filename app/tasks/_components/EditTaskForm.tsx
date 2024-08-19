@@ -78,8 +78,8 @@ export default function EditTodo({ task, className }) {
                 </label>
                 <input
                   pattern="[0-9]{9}"
-                  maxLength={5}
-                  type="number"
+                  maxLength={9}
+                  type="tel"
                   id="mobileNumber"
                   name="mobileNumber"
                   value={formData.mobileNumber}
@@ -93,8 +93,8 @@ export default function EditTodo({ task, className }) {
                 </label>
                 <input
                   pattern="[0-9]{5}"
-                  maxLength={9}
-                  type="number"
+                  maxLength={5}
+                  type="text"
                   id="postcode"
                   name="postcode"
                   value={formData.postcode}

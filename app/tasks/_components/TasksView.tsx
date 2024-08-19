@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React, { Suspense, useState } from "react";
+import { useState } from "react";
 import FilterBar from "./FilterBar";
 
 const TasksView = ({ tasks }) => {
@@ -77,13 +77,7 @@ const TasksView = ({ tasks }) => {
               >
                 Více informací
               </Link>
-            </article>
-            {/* {isAdmin == process.env.SUPABASE_ADMIN ? (
-          <div className="flex justify-around gap-1 p-2">
-            <DeleteTaskForm id={task.id} className="w-3/6" />
-            <EditTaskForm task={task} className="w-3/6" />
-          </div>
-        ) : null} */}
+            </article>       
           </div>
         ))}
       </div>

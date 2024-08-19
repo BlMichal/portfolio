@@ -16,6 +16,7 @@
     "portfolio": "file:",
     "react": "^18",
     "react-dom": "^18",
+    "react-hot-toast": "^2.4.1",
     "swiper": "^11.1.9"
   },
   "devDependencies": {

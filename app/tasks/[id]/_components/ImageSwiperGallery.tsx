@@ -16,11 +16,11 @@ import DeleteImageForm from "./DeleteImageForm"
 
 const ImageSwiperGallery = ({ images , user }) => {
 
-   console.log(images)
+
     const [thumbsSwiper, setThumbsSwiper] = useState<SwiperInterface | null>(null)
     
     return (
-        <section className="bg-black py-2">
+        <section className="py-2">
             {images.length > 0 ?  
             <>       
             <Swiper

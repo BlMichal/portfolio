@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Footer = () => {
     return (
         <footer className="bg-black/85 px-4 py-6  dark:bg-gray-700 md:flex md:items-center md:justify-between">
@@ -38,7 +36,6 @@ const Footer = () => {
                 </a>
             </div>
         </footer>
-
     )
 }
 

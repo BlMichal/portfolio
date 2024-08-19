@@ -9,6 +9,7 @@ export default async function TaskPage() {
   const { data: tasks, error } = await supabase
     .from("tasks")
     .select("*, tasksImages(imageUrl)")
+    .order('id', { ascending: false })
    
   return (
     <section className="bg-peak-background min-h-screen-content flex">
