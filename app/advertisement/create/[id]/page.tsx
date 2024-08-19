@@ -1,23 +1,19 @@
-"use client"
+"use client";
 
 import { createClient } from '@/utils/supabase/client';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import toast from 'react-hot-toast';
 import ImageUpload from '../../_components/ImageUpload';
 
-const CreateAdvertisementisement = ({ params }) => {
-
-  useEffect(() => {
-    CheckIfExist();
-  }, []);
-
+const CreateAdvertisement = ({ params }) => {
+  
   const router = useRouter();
 
-  const CheckIfExist = async () => {
-
+  // Use useCallback to memoize the CheckIfExist function
+  const CheckIfExist = useCallback(async () => {
     const supabase = createClient();
-
+    
     const { data: ads, error } = await supabase
       .from("TabAdvertisement")
       .select("id")
@@ -26,17 +22,28 @@ const CreateAdvertisementisement = ({ params }) => {
 
     if (error || !ads) {
       router.replace('/advertisement/create');
-      toast.error(<span className='w-60 h-20 flex items-center'>Tento záznam neexistuje!</span>)
+      toast.error(
+        <span className='w-60 h-20 flex items-center'>
+          Tento záznam neexistuje!
+        </span>
+      );
     }
-  };
+  }, [params.id, router]); // Add dependencies: params.id and router
+
+  useEffect(() => {
+    CheckIfExist();
+  }, [CheckIfExist]); // Add CheckIfExist as a dependency
 
   return (
     <section className='flex flex-col items-center min-h-screen-content-md-footer md:min-h-screen-content-footer'>
       <h1 className='font-mono text-3xl font-semibold'>Vytvořit inzerát</h1>
-      <p className='my-2'><span className='text-purple-700 font-bold'>2 krok: </span>Nahrajte fotografie k inzerátu</p>
+      <p className='my-2'>
+        <span className='text-purple-700 font-bold'>2 krok: </span>
+        Nahrajte fotografie k inzerátu
+      </p>
       <ImageUpload variant='default' pageId={params.id} />
     </section>
-  )
-}
+  );
+};
 
-export default CreateAdvertisementisement
+export default CreateAdvertisement;
