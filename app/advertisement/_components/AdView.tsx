@@ -41,7 +41,7 @@ const AdView = ({ advertisementData }) => {
         {filteredAds?.map((ad: AdProps) => (
           <div
             key={ad.id}
-            className="h-[300px] border-2 flex flex-col border-customColor1 justify-between bg-slate-100 shadow-md rounded-lg last:mb-10"
+            className="h-[300px] border-2 flex flex-col border-customPurple justify-between bg-slate-100 shadow-md rounded-lg last:mb-10"
           >
             <div className="relative mx-4 -mt-6 h-1/2 overflow-hidden rounded-xl">
               {ad.TabAdsImages && ad.TabAdsImages.length > 0 ? (

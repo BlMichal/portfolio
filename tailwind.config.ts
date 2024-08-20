@@ -10,12 +10,11 @@ const config: Config = {
     extend: {
       minHeight: {
         'screen-content': 'calc(100vh - 56px)', 
-        'screen-content-md-footer': 'calc(100vh - 160px)', 
-        'screen-content-footer': 'calc(100vh - 124px)', 
+        'screen-content-sm-footer': 'calc(100vh - 160px)', 
+        'screen-content-md-footer': 'calc(100vh - 124px)', 
       },
       colors: {
-        customColor1: "rgb(123,120,163)",
-        customColor2: "rgb(233,240,239)",
+        customPurple: "rgb(123,120,163)",        
       },
       backgroundImage: {
         "purple-gradient": "linear-gradient(0deg, rgba(19,1,23,1) 0%, rgba(70,44,96,1) 100%)",

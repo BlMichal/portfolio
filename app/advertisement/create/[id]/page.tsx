@@ -35,7 +35,7 @@ const CreateAdvertisement = ({ params }) => {
   }, [CheckIfExist]); // Add CheckIfExist as a dependency
 
   return (
-    <section className='flex flex-col items-center min-h-screen-content-md-footer md:min-h-screen-content-footer'>
+    <section className='flex flex-col items-center min-h-screen-content-sm-footer md:min-h-screen-content-md-footer'>
       <h1 className='font-mono text-3xl font-semibold'>Vytvořit inzerát</h1>
       <p className='my-2'>
         <span className='text-purple-700 font-bold'>2 krok: </span>

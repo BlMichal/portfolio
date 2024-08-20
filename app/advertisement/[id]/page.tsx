@@ -30,7 +30,7 @@ const DetailAdPage = async ({ params }: { params: { id: string } }) => {
 
 
   return (
-    <section className="min-h-screen-content-md-footer md:min-h-screen-content-footer bg-black/80">
+    <section className="min-h-screen-content-sm-footer md:min-h-screen-content-md-footer bg-black/80">
       <div className="max-w-7xl mx-auto">
         <ImageSwiperGallery images={advertisementImages} user={userId} />
       </div>
