@@ -31,16 +31,16 @@ const Navbar = ({ userInterface }) => {
   return (
     <nav className="flex items-center justify-between px-8 h-14">
       {/*Desktop nav*/}
-      <div className="">
+      <>
         <Link href={"/"}>
           <Image src="/logo.png" alt="Header logo" width={40} height={40} />
         </Link>
-      </div>
+      </>
       <div className="flex items-center bg-white">
         <ul className="md:flex hidden items-center gap-3 mr-16">
           {NavbarMenu.map((menu) => (
             <li key={menu.id}>
-              <button className="flex items-center relative hover:text-black text-neutral-400 group px-2 py-3 transition-all group">
+              <button className="flex items-center relative hover:text-black text-neutral-400 px-2 py-3 transition-all group">
                 <span
                   onClick={() => router.replace(menu.href)}
                 >
@@ -84,14 +84,14 @@ const Navbar = ({ userInterface }) => {
               <form action={signOut}>
                 <button
                   type="submit"
-                  className="text-neutral-400 transition-all hover:text-black/80"
+                  className="text-neutral-400 transition-all px-2 py-3 hover:text-black/80"
                 >
                   Odhlásit
                 </button>
               </form>
             </div>
           ) : (
-            <button className="text-neutral-400 transition-all hover:text-black/80 hidden md:block">
+            <button className="text-neutral-400 transition-all px-2 py-3 hover:text-black/80 hidden md:block">
               <Link href={"/login"}>
                 <span>Přihlásit</span>
               </Link>
@@ -102,7 +102,7 @@ const Navbar = ({ userInterface }) => {
         {/* Mobile nav */}
         <div
           className={`
-        md:hidden bg-white w-full fixed top-0 flex flex-col overflow-y-auto bottom-0 py-24 pl-4
+        md:hidden bg-white w-full fixed top-0 flex flex-col overflow-y-hidden items-start justify-between bottom-0 py-24 pl-4
         duration-300 z-40 ${open ? "left-0" : "left-[-100%]"}
         `}
         >
@@ -163,15 +163,15 @@ const Navbar = ({ userInterface }) => {
                 </form>
               </div>
             ) : (
-              <button className="text-neutral-400 transition-all hover:text-black/80 hidden md:block">
+              <button className="text-neutral-400 transition-all hover:text-black/80 md:hidden block">
                 <Link href={"/login"}>
-                  <span>Přihlásit</span>
+                  <span className="text-xl">Přihlásit</span>
                 </Link>
               </button>
             )}
           </>
         </div>
-        <button onClick={() => setOpen(!open)} className="fixed md:hidden z-50">
+        <button onClick={() => setOpen(!open)} className="ml-4 md:hidden z-50">
           {open ? "X" : "☰"}
         </button>
       </div>

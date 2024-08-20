@@ -6,9 +6,6 @@ type AdImagesProps = {
   TabAdvertisement: AdProps;
 };
 
-
-
-
 type AdProps = {
   id: number;
   user_id: string;

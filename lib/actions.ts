@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 
 export async function createAd(formData: FormData) {
   const supabase = createClient();
+  const userId = (await supabase.auth.getUser()).data.user?.id;
 
   const title = formData.get("title");
   const price = formData.get("price");
@@ -15,7 +16,6 @@ export async function createAd(formData: FormData) {
   const category = formData.get("category");
   const desc = formData.get("desc");
 
-  const userId = (await supabase.auth.getUser()).data.user?.id;
 
   const { data, error } = await supabase
     .from("TabAdvertisement")
@@ -90,7 +90,7 @@ export async function deleteAdImages(formData) {
   const id = formData.get("id");
   const imageUrl = formData.get("imageUrl");
 
-  const imageId = imageUrl.split("/").popadvertisement
+  const imageId = imageUrl.split("/").pop()
 
   const { error } = await supabase.from("TabAdsImages").delete().eq("id", id);
 
