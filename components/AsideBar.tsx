@@ -18,7 +18,7 @@ const AsideBar = () => {
     // { id: 3, title: "Moje inzeráty", src: <BookOpenCheck />, href:'/advertisement/' },
     // { id: 4, title: "Oblíbené inzeráty", src: <Star />, href:'/' },
   ];
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
 
   useEffect(() => {
@@ -40,7 +40,7 @@ const AsideBar = () => {
 
 
   return (
-    <aside>
+    <aside className="hidden md:block">
       <div
         className={`${isOpen ? "w-72" : "w-20"
           } h-full bg-customPurple shadow-[8px_0px_6px_0px_rgba(0,0,0,0.39)] md:duration-300 relative`}

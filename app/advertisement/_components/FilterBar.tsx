@@ -1,6 +1,6 @@
 const FilterBar = ({ inputValue, selectValue }) => {
   return (
-    <form className="w-fit pl-8 flex flex-col md:flex-row justify-between gap-2 md:items-center">
+    <form className="w-fit px-5  flex flex-col md:flex-row justify-between gap-2 md:items-center">
       {/* TEXT FILTER */}
       <div className="flex flex-col">      
       <label

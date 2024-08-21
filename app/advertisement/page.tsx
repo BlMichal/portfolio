@@ -1,6 +1,6 @@
 import AsideBar from "@/components/AsideBar";
 import { createClient } from "@/utils/supabase/server";
-import AdView from "./_components/AdView";
+import FilteredAdView from "./_components/FilteredAdView";
 
 export default async function TaskPage() {
 
@@ -12,9 +12,9 @@ export default async function TaskPage() {
     .order('id', { ascending: false })
 
   return (
-    <section className="bg-peak-background min-h-screen-content flex">
+    <section className="bg-peak-background md:min-h-screen-content-md-footer min-h-screen-content-sm-footer flex">
       <AsideBar />
-      <AdView advertisementData={advertisement} />
+      <FilteredAdView advertisementData={advertisement} />
     </section>
   );
 }

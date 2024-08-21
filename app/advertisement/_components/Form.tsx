@@ -6,7 +6,7 @@ import SubmitButton from "./SubmitButton";
 
 const Form = () => {
   return (
-    <form action={createAd} className="w-full max-w-lg md:border md:rounded-2xl md:border-black mt-4 px-6 py-2 md:shadow-[8px_8px_0px_0px_rgba(109,40,217)]">
+    <form action={createAd} className="w-full max-w-lg  md:border md:rounded-2xl md:border-black mt-4 px-6 py-2 md:shadow-[8px_8px_0px_0px_rgba(109,40,217)]">
       <div className="relative z-0 w-full mb-5 mt-5 group">
         <input
           type="text"

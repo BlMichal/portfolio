@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDown, ChevronsDown, ChevronsUpDown } from "lucide-react";
+import { ChevronDown} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -13,8 +13,8 @@ const NavbarMenu = [
     title: "Inzeráty",
     href: "/advertisement",
     dropdown: [
-      { id: 1.1, title: "Vytvořit inzerát", href: "/advertisement/create" },
-      { id: 1.2, title: "Seznam inzerátů", href: "/advertisement/" },
+      { id: 1, title: "Vytvořit inzerát", href: "/advertisement/create" },
+      { id: 2, title: "Seznam inzerátů", href: "/advertisement/" },
     ],
   },
   {
@@ -26,10 +26,22 @@ const NavbarMenu = [
 
 const Navbar = ({ userInterface }) => {
   const router = useRouter();
-  const [open, setOpen] = useState(false);
+
+  const [openDropDown, setOpenDropDown] = useState<number| null>(null); // U mobilních zařízení, menu dropdown otevřít na clicknutí, místo na hover.
+  const [open, setOpen] = useState<boolean>(false);
+
+  const handleToggle = (id: number) => {
+    if (openDropDown === id) {
+      // If the clicked dropdown is already open, close it
+      setOpenDropDown(null);
+    } else {
+      // Open the clicked dropdown and close others
+      setOpenDropDown(id);
+    }
+  };
 
   return (
-    <nav className="flex items-center justify-between px-8 h-14">
+    <nav className="flex items-center justify-between md:px-8 px-4 h-14">
       {/*Desktop nav*/}
       <>
         <Link href={"/"}>
@@ -41,11 +53,9 @@ const Navbar = ({ userInterface }) => {
           {NavbarMenu.map((menu) => (
             <li key={menu.id}>
               <button className="flex items-center relative hover:text-black text-neutral-400 px-2 py-3 transition-all group">
-                <span
-                  onClick={() => router.replace(menu.href)}
-                >
+                <span onClick={() => router.replace(menu.href)}>
                   {menu.title}
-                </span>
+                  </span>
                 {menu.dropdown ? (
                   <>
                     <span className=" transition-all group-hover:translate-y-0.5">
@@ -109,27 +119,27 @@ const Navbar = ({ userInterface }) => {
           <ul>
             {NavbarMenu.map((menu) => (
               <li key={menu.id}>
-                <button className="flex flex-col my-2 hover:text-black text-neutral-400 group ">
-                  <span
-                    onClick={() => {
-                      router.replace(menu.href);
-                      setOpen(false);
-                    }}
+                <button className="flex flex-col my-2 hover:text-black text-neutral-400">
+                  <span                  
+                    onClick={() => handleToggle(menu.id)}
                     className="flex text-xl items-center"
                   >
                     {menu.title}
                     {menu.dropdown && <ChevronDown />}
                   </span>
                   {/* dropdown menu */}
-                  {menu.dropdown && (
-                    <div className="group-hover:flex gap-2 hidden ease-in-out transition-all duration-300 flex-col px-4 py-2 rounded-lg bg-white shadow-md z-[999]">
-                      {menu.dropdown.map((dropdownMenu) => (
-                        <Link key={dropdownMenu.id} href={dropdownMenu.href}>
+                  {menu.dropdown && openDropDown === menu.id && (
+                    <div className="flex gap-2 flex-col px-4 py-4 rounded-lg bg-white shadow-md z-[999]">
+                      {menu.dropdown.map((dropdownItem) => (
+                        <Link key={dropdownItem.id} href={dropdownItem.href}>
                           <span
-                            onClick={() => setOpen(false)}
+                            onClick={() => {
+                              setOpen(false);
+                              setOpenDropDown(null);}
+                            }
                             className="whitespace-nowrap hover:text-black text-neutral-400"
                           >
-                            {dropdownMenu.title}
+                            {dropdownItem.title}
                           </span>
                         </Link>
                       ))}

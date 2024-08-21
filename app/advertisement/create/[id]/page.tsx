@@ -6,7 +6,7 @@ import { useEffect, useCallback } from 'react';
 import toast from 'react-hot-toast';
 import ImageUpload from '../../_components/ImageUpload';
 
-const CreateAdvertisement = ({ params }) => {
+const UploadAdvertisementisementImages = ({ params }) => {
 
   const router = useRouter();
 
@@ -46,4 +46,4 @@ const CreateAdvertisement = ({ params }) => {
   );
 };
 
-export default CreateAdvertisement;
+export default UploadAdvertisementisementImages;
