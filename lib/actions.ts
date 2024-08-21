@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 export async function createAd(formData: FormData) {
+  
   const supabase = createClient();
   const userId = (await supabase.auth.getUser()).data.user?.id;
 
