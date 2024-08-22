@@ -11,6 +11,8 @@ export default async function TaskPage() {
     .select("*, TabAdsImages(imageUrl)")
     .order('id', { ascending: false })
 
+  
+
   return (
     <section className="bg-peak-background md:min-h-screen-content-md-footer min-h-screen-content-sm-footer flex">
       <AsideBar />

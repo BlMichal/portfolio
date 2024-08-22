@@ -28,11 +28,11 @@ const UploadAdvertisementisementImages = ({ params }) => {
         </span>
       );
     }
-  }, [params.id, router]); // Add dependencies: params.id and router
+  }, [params.id, router]); 
 
   useEffect(() => {
     CheckIfExist();
-  }, [CheckIfExist]); // Add CheckIfExist as a dependency
+  }, [CheckIfExist]);
 
   return (
     <section className='flex flex-col items-center min-h-screen-content-sm-footer md:min-h-screen-content-md-footer'>

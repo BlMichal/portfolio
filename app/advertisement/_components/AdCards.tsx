@@ -1,7 +1,7 @@
 import AdCardsLarge from "./AdCardsLarge";
 import AdCardsSmall from "./AdCardsSmall";
 
-const AdCards = ({ filteredAds, layout }: { filteredAds: AdProps[] | null, layout: string }) => {
+const AdCards = ({ filteredAds, layout }: { filteredAds: AdProps[], layout: string }) => {
   return (
     <>
       {layout === "layout1" ? (

@@ -4,7 +4,7 @@ import React from 'react'
 import { House, Layers3, Wallet } from 'lucide-react'
 import { truncateText } from '@/lib/functions'
 
-const AdCardsSmall = ({adsItems}:{adsItems : AdProps[]|null}) => {
+const AdCardsSmall = ({adsItems}:{adsItems : AdProps[]}) => {
   return (
     <div className="max-w-7xl grid grid-cols-1 gap-y-4 pt-8 md:px-4 px-1 mx-auto">
     {adsItems?.map(({id, title, desc, price, city, category, TabAdsImages }) => (

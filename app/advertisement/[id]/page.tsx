@@ -55,8 +55,8 @@ const DetailAdPage = async ({ params }: { params: { id: string } }) => {
                     <ImageUpload variant={"compact"} pageId={params.id} />
                   </div>
                   <div className="flex gap-4 pb-4">
-                    <DeleteAdForm advertisementId={ad.id} className="" />
-                    <EditAdForm advertisement={ad} className="" />
+                    <DeleteAdForm advertisementId={ad.id} buttonStyling="" />
+                    <EditAdForm advertisement={ad} buttonStyling="" />
                   </div>
                 </div>
               </>

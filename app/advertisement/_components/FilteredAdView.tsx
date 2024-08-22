@@ -5,9 +5,12 @@ import FilterBar from "./FilterBar";
 import AdsView from "./AdCards";
 import AdCardsLayout from "./AdCardsLayout";
 
-const FilteredAdView = ({ advertisementData }: {advertisementData:AdProps[]}) => {
+const FilteredAdView = ({ advertisementData }: {advertisementData:AdProps[] | null }) => {
+  if (!advertisementData) {
+    return null; // or some other fallback UI
+  }
 
-  const [filteredAds, setFilteredAds] = useState<AdProps[]|null>(advertisementData);
+  const [filteredAds, setFilteredAds] = useState<AdProps[]>(advertisementData);
   const [inputValue, setInputValue] = useState<string>("");
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [layout, setLayout] = useState<string>("layout2");
@@ -25,7 +28,7 @@ const FilteredAdView = ({ advertisementData }: {advertisementData:AdProps[]}) =>
     setInputValue(newFilterValue);
     setSelectedCategory(newCategory);
 
-    const filtered = advertisementData.filter(({title, desc, category}:AdProps) => {
+    const filtered = advertisementData.filter(({title, desc, category}) => {
       const titleMatch = removeAccents(title).includes(removeAccents(newFilterValue));
       const descMatch = removeAccents(desc).includes(removeAccents(newFilterValue));
       const categoryMatch = newCategory ? category === newCategory : true;
