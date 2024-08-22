@@ -34,7 +34,7 @@ const AdCards = ({filteredAds}) => {
           )}
         </div>
         <article className="mt-2 px-2 py-2 flex gap-2 justify-between flex-auto">
-          <div>
+          <div className="flex-auto">
           <h2 className="mb-2 md:text-sm text-xs font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
           {truncateText(ad.title, 20)}
           </h2>

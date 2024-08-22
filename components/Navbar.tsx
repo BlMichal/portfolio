@@ -119,17 +119,17 @@ const Navbar = ({ userInterface }) => {
           <ul>
             {NavbarMenu.map((menu) => (
               <li key={menu.id}>
-                <button className="flex flex-col my-2 hover:text-black text-neutral-400">
+                <button className="flex flex-col mb-4 hover:text-black text-neutral-400">
                   <span                  
                     onClick={() => handleToggle(menu.id)}
-                    className="flex text-xl items-center"
+                    className="flex text-2xl items-center"
                   >
                     {menu.title}
                     {menu.dropdown && <ChevronDown />}
                   </span>
                   {/* dropdown menu */}
                   {menu.dropdown && openDropDown === menu.id && (
-                    <div className="flex gap-2 flex-col px-4 py-4 rounded-lg bg-white shadow-md z-[999]">
+                    <div className="flex gap-2 flex-col text-xl px-4 py-4 rounded-lg bg-white shadow-md z-[999]">
                       {menu.dropdown.map((dropdownItem) => (
                         <Link key={dropdownItem.id} href={dropdownItem.href}>
                           <span
@@ -151,7 +151,7 @@ const Navbar = ({ userInterface }) => {
           </ul>
           <>
             {userInterface !== null ? (
-              <div className="md:hidden items-center mt-20 gap-2 block">
+              <div className="md:hidden items-center gap-4 block ">
                 {userInterface?.user_metadata.avatar_url ? (
                   <Image
                     src={userInterface?.user_metadata.avatar_url}
@@ -166,22 +166,22 @@ const Navbar = ({ userInterface }) => {
                 <form action={signOut}>
                   <button
                     type="submit"
-                    className="text-neutral-400 transition-all hover:text-black/80"
+                    className="text-neutral-400 text-2xl hover:text-black/80"
                   >
                     Odhlásit
                   </button>
                 </form>
               </div>
             ) : (
-              <button className="text-neutral-400 transition-all hover:text-black/80 md:hidden block">
+              <button className="text-neutral-400 text-2xl hover:text-black/80 md:hidden block">
                 <Link href={"/login"}>
-                  <span className="text-xl">Přihlásit</span>
+                  <span className="">Přihlásit</span>
                 </Link>
               </button>
             )}
           </>
         </div>
-        <button onClick={() => setOpen(!open)} className="ml-4 md:hidden z-50">
+        <button onClick={() => setOpen(!open)} className="ml-4 text-2xl md:hidden z-50">
           {open ? "X" : "☰"}
         </button>
       </div>
