@@ -1,6 +1,6 @@
 const FilterBar = ({ inputValue, selectValue }) => {
   return (
-    <form className="w-fit px-5  flex flex-col md:flex-row justify-between gap-2 md:items-center">
+    <form className="w-fit px-5 flex flex-row justify-between gap-2 items-center">
       {/* TEXT FILTER */}
       <div className="flex flex-col">      
       <label
@@ -31,7 +31,7 @@ const FilterBar = ({ inputValue, selectValue }) => {
           onChange={(e) => inputValue(e.target.value)}
           type="search"
           id="text-search"
-          className="block w-full p-4 ps-10 text-sm text-gray-900 border-black border-2 rounded-lg"
+          className="block w-full md:py-4 p-2 ps-8 text-sm text-gray-900 border-black border rounded-lg"
           placeholder="Vyhledej inzerát"
           required
         />
@@ -47,7 +47,7 @@ const FilterBar = ({ inputValue, selectValue }) => {
       </label>
       <select
         onChange={(e) => selectValue(e.target.value)}
-        className="block max-w-sm p-4 text-sm border-black border-2 rounded-lg"
+        className="block max-w-sm md:py-4 p-2 text-sm border-black border rounded-lg"
         id="category-search"
       >
         <option value="">Vše</option>

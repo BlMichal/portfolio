@@ -11,7 +11,7 @@ function truncateText(text: string, maxLength: number) {
 
 const AdCards = ({ filteredAds }) => {
   return (
-    <div className="max-w-7xl grid grid-cols-1 gap-4 gap-y-10 pt-8 md:px-4 px-1 mx-auto">
+    <div className="max-w-7xl grid grid-cols-1 gap-y-4 pt-8 md:px-4 px-1 mx-auto">
       {filteredAds?.map((ad: AdProps) => (
         <Link
           href={`/advertisement/${ad.id}`}
