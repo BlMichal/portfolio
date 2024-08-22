@@ -5,7 +5,7 @@ import { PencilRuler } from "lucide-react";
 import { useState } from "react";
 
 
-export default function EditAdForm({ advertisement, className }) {
+export default function EditAdForm({ advertisement, buttonStyling}) {
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
     desc: advertisement.desc,
@@ -24,7 +24,7 @@ export default function EditAdForm({ advertisement, className }) {
     <>
       <button
         onClick={() => setShowModal(true)}
-        className={`flex items-center justify-center gap-1 bg-white hover:bg-gray-400 text-black font-bold py-2 px-4 ${className}`}
+        className={`flex items-center justify-center gap-1 bg-white hover:bg-gray-400 text-black font-bold py-2 px-4 ${buttonStyling}`}
       >
         <PencilRuler /><span>Upravit</span>
       </button>

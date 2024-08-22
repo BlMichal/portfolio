@@ -1,4 +1,6 @@
-const FilterBar = ({ inputValue, selectValue }) => {
+
+
+const FilterBar = ({ inputValue, selectValue }:{inputValue:(value: string) => void,selectValue:(value: string) => void }) => {
   return (
     <form className="w-fit px-5 flex flex-row justify-between gap-2 items-center">
       {/* TEXT FILTER */}
@@ -56,7 +58,7 @@ const FilterBar = ({ inputValue, selectValue }) => {
         <option value="Drogérie">Drogérie</option>
         <option value="Ostatní">Ostatní</option>
       </select>
-      </div>
+      </div>      
     </form>
   );
 };

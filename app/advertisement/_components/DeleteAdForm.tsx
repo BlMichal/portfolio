@@ -6,13 +6,13 @@ import { useState } from "react"
 
 
 
-export default function DeleteAdForm({ advertisementId, className }) {
+export default function DeleteAdForm({ advertisementId, buttonStyling }:{advertisementId:number, buttonStyling:string}) {
 
     const [showModal, setShowModal] = useState(false)
 
     return (
         <>
-            <button onClick={() => setShowModal(true)} className={`flex items-center justify-center gap-1 bg-red-400 hover:bg-red-500 text-white font-bold py-2 px-4 ${className}`}>
+            <button onClick={() => setShowModal(true)} className={`flex items-center justify-center gap-1 bg-red-400 hover:bg-red-500 text-white font-bold py-2 px-4 ${buttonStyling}`}>
                 <Trash2 /><span>Smazat</span>
             </button>
             {showModal && (
