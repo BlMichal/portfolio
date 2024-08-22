@@ -5,10 +5,7 @@ import FilterBar from "./FilterBar";
 import AdsView from "./AdCards";
 import AdCardsLayout from "./AdCardsLayout";
 
-const FilteredAdView = ({ advertisementData }: {advertisementData:AdProps[] | null }) => {
-  if (!advertisementData) {
-    return null; // or some other fallback UI
-  }
+const FilteredAdView = ({ advertisementData }) => {
 
   const [filteredAds, setFilteredAds] = useState<AdProps[]>(advertisementData);
   const [inputValue, setInputValue] = useState<string>("");
