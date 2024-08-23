@@ -3,11 +3,11 @@
 import { useState } from "react";
 import FilterBar from "./FilterBar";
 import AdsView from "./AdCards";
-import AdCardsLayout from "./AdCardsLayout";
+import AdCardsLayoutButton from "./AdCardsLayoutButton";
 
-const FilteredAdView = ({ advertisementData }) => {
+const FilteredAdView = ({ advertisementData }:{advertisementData : AdProps[]|null}) => {
 
-  const [filteredAds, setFilteredAds] = useState<AdProps[]>(advertisementData);
+  const [filteredAds, setFilteredAds] = useState<AdProps[]|null>(advertisementData);
   const [inputValue, setInputValue] = useState<string>("");
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [layout, setLayout] = useState<string>("layout2");
@@ -25,6 +25,10 @@ const FilteredAdView = ({ advertisementData }) => {
     setInputValue(newFilterValue);
     setSelectedCategory(newCategory);
 
+    if(!advertisementData){
+      return null
+    }
+
     const filtered = advertisementData.filter(({title, desc, category}) => {
       const titleMatch = removeAccents(title).includes(removeAccents(newFilterValue));
       const descMatch = removeAccents(desc).includes(removeAccents(newFilterValue));
@@ -41,7 +45,7 @@ const FilteredAdView = ({ advertisementData }) => {
       <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-2">
       <FilterBar inputValue={(value) => handleFilterChange(value, selectedCategory)}
         selectValue={(value) => handleFilterChange(inputValue, value)} />
-      <AdCardsLayout setLayout={setLayout} />
+      <AdCardsLayoutButton setLayout={setLayout} />
       </div>
       <AdsView filteredAds={filteredAds} layout={layout} />
     </div>

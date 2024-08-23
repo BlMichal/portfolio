@@ -39,8 +39,8 @@ export async function createAd(formData: FormData) {
     redirect(`/advertisement/create/${data[0].id}/`);
   }
 
-  if (error) {
-    throw new Error("Chyba při ukládání dat");
+  if(error){
+    throw new Error(`Chyba při ukládání dat ${error.message}`);
   }
 }
 
@@ -52,7 +52,7 @@ export async function deleteAd(formData: FormData) {
   const { data, error } = await supabase.from("TabAdvertisement").delete().eq("id", id);
 
   if (error) {
-    throw new Error("Chyba při mazání dat");
+    throw new Error(`Chyba při mazání dat ${error.message}`);
   }
 
   revalidatePath("/");
@@ -72,14 +72,14 @@ export async function updateAd(formData: FormData) {
   const desc = formData.get("desc");
 
   const { data, error } = await supabase
-    .from("TabAdvertisement")
+    .from("TabAdvertiement")
     .update({ desc, price, postcode, title, city, category, mobileNumber })
     .eq("id", id)
     .select();
 
   if (error) {
-    throw new Error("Chyba při ukládání dat");
-  }
+    throw new Error(`Chyba při ukládání dat dat ${error.message}`);
+    }
 
   revalidatePath("/");
 }

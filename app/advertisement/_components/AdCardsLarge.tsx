@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const AdCardsLarge = ({ adsItems }:{ adsItems: AdProps[] }) => {
+const AdCardsLarge = ({ adsItems }:{ adsItems: AdProps[]|null }) => {
   return (
     <div className="max-w-7xl grid grid-cols-1 gap-4 gap-y-10 lg:grid-cols-2 pt-14 px-4 mx-auto flex-auto ">
       {adsItems?.map(({ id, title, price, city, category, TabAdsImages }) => (
