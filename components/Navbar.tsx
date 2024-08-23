@@ -103,12 +103,10 @@ const Navbar = ({ userInterface }) => {
                 </button>
               </form>
             </div>
-          ) : (
-            <button className="text-black transition-all px-2 py-3 hover:text-neutral-400/80 hidden md:block">
-              <Link href={"/login"}>
+          ) : (            
+              <Link href={"/login"} className="text-black transition-all px-2 py-3 hover:text-neutral-400/80 hidden md:block">
                 <span>Přihlásit</span>
-              </Link>
-            </button>
+              </Link>            
           )}
         </div>
 
@@ -181,11 +179,11 @@ const Navbar = ({ userInterface }) => {
                 </form>
               </div>
             ) : (
-              <button className="text-black text-2xl hover:text-neutral-400 md:hidden block">
-                <Link href={"/login"}>
+              
+                <Link href={"/login"} className="text-black text-2xl hover:text-neutral-400 md:hidden block">
                   <span onClick={() => handleCloseAll()}>Přihlásit</span>
                 </Link>
-              </button>
+              
             )}
           </>
         </div>
