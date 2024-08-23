@@ -19,16 +19,16 @@ export default async function LoginPage({
   }
 
   return (
-    <div className="flex flex-col border-2 items-center bg-black/5 md:mt-24 mt-8 max-w-lg mx-auto p-8 shadow-lg relative">
+    <div className="flex flex-col border-2 items-center bg-black/5 md:mt-24 mt-8 max-w-lg mx-auto p-8 shadow-lg relative">      
       <div className="text-center absolute -top-6">
         {searchParams.message && (
           <span className="p-2 rounded-lg text-lg bg-red-700 text-white flex gap-2">
           <TriangleAlert /><span>{searchParams.message}</span>
-          </span>
-          
+          </span>          
         )}
-      </div>
+      </div>      
       <form className="flex flex-col gap-6 w-full">
+      <h2 className="text-black text-2xl text-center font-mono">Přihlásit se</h2>
         <div>
           <label
             htmlFor="email"
@@ -54,6 +54,7 @@ export default async function LoginPage({
             id="password"
             name="password"
             type="password"
+            autoComplete="on"
             className="w-full border rounded-lg p-2 focus:outline-none border-black focus:border-blue-500"
           />
         </div>
