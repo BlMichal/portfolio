@@ -43,7 +43,7 @@ const AsideBar = () => {
     <aside className="hidden md:block">
       <div
         className={`${isOpen ? "w-72" : "w-20"
-          } h-full bg-customPurple shadow-[8px_0px_6px_0px_rgba(0,0,0,0.39)] md:duration-300 relative`}
+          } h-full bg-black shadow-[8px_0px_6px_0px_rgba(0,0,0,0.39)] md:duration-300 relative`}
       >
         <ArrowBigLeftDash size={35}
           className={`absolute cursor-pointer -right-4 top-9 border-2 rounded-full md:block z-10 hidden bg-white ${!isOpen && "rotate-180"

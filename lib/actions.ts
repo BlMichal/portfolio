@@ -72,7 +72,7 @@ export async function updateAd(formData: FormData) {
   const desc = formData.get("desc");
 
   const { data, error } = await supabase
-    .from("TabAdvertiement")
+    .from("TabAdvertisement")
     .update({ desc, price, postcode, title, city, category, mobileNumber })
     .eq("id", id)
     .select();

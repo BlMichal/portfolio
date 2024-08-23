@@ -31,18 +31,21 @@ const Navbar = ({ userInterface }) => {
   const [open, setOpen] = useState<boolean>(false);
 
   const handleToggle = (id: number) => {
-    if (openDropDown === id) {
-      // If the clicked dropdown is already open, close it
+    if (openDropDown === id) {     
       setOpenDropDown(null);
-    } else {
-      // Open the clicked dropdown and close others
+    } else {      
       setOpenDropDown(id);
     }
   };
 
+  const handleCloseAll = () => {
+    setOpen(false);
+    setOpenDropDown(null);
+  }
+
   return (
     <nav className="flex items-center justify-between md:px-8 px-4 h-14">
-      {/*Desktop nav*/}
+      {/*------------------------------------------------ Desktop nav ------------------------------------------------*/}
       <>
         <Link href={"/"}>
           <Image src="/logo.png" alt="Header logo" width={40} height={40} />
@@ -52,7 +55,7 @@ const Navbar = ({ userInterface }) => {
         <ul className="md:flex hidden items-center gap-3 mr-16">
           {NavbarMenu.map((menu) => (
             <li key={menu.id}>
-              <button className="flex items-center relative hover:text-black text-neutral-400 px-2 py-3 transition-all group">
+              <button className="flex items-center relative hover:text-neutral-400 text-black px-2 py-3 transition-all group">
                 <span onClick={() => router.replace(menu.href)}>
                   {menu.title}
                   </span>
@@ -65,7 +68,7 @@ const Navbar = ({ userInterface }) => {
                       {/* Dropdown menu */}
                       {menu.dropdown.map((dropdownMenu) => (
                         <Link key={dropdownMenu.id} href={dropdownMenu.href}>
-                          <span className="whitespace-nowrap hover:text-black text-neutral-400">
+                          <span className="whitespace-nowrap hover:text-neutral-400 text-black">
                             {dropdownMenu.title}
                           </span>
                         </Link>
@@ -92,16 +95,16 @@ const Navbar = ({ userInterface }) => {
                 <span>{userInterface.email}</span>
               )}
               <form action={signOut}>
-                <button
+                <button                 
                   type="submit"
-                  className="text-neutral-400 transition-all px-2 py-3 hover:text-black/80"
+                  className="text-black transition-all px-2 py-3 hover:text-neutral-400/80"
                 >
                   Odhlásit
                 </button>
               </form>
             </div>
           ) : (
-            <button className="text-neutral-400 transition-all px-2 py-3 hover:text-black/80 hidden md:block">
+            <button className="text-black transition-all px-2 py-3 hover:text-neutral-400/80 hidden md:block">
               <Link href={"/login"}>
                 <span>Přihlásit</span>
               </Link>
@@ -109,7 +112,7 @@ const Navbar = ({ userInterface }) => {
           )}
         </div>
 
-        {/* Mobile nav */}
+        {/*------------------------------------------------ Mobile nav ------------------------------------------------*/}
         <div
           className={`
         md:hidden bg-white w-full fixed top-0 flex flex-col overflow-y-hidden items-start justify-between bottom-0 py-24 pl-4
@@ -119,9 +122,16 @@ const Navbar = ({ userInterface }) => {
           <ul>
             {NavbarMenu.map((menu) => (
               <li key={menu.id}>
-                <button className="flex flex-col mb-4 hover:text-black text-neutral-400">
+                <button className="flex flex-col mb-4 hover:text-neutral-400 text-black">
                   <span                  
-                    onClick={() => handleToggle(menu.id)}
+                     onClick={() => {
+                      if (menu.dropdown) {
+                        handleToggle(menu.id);
+                      } else {
+                        handleCloseAll();
+                        router.push("/")
+                      }
+                    }}
                     className="flex text-2xl items-center"
                   >
                     {menu.title}
@@ -133,11 +143,8 @@ const Navbar = ({ userInterface }) => {
                       {menu.dropdown.map((dropdownItem) => (
                         <Link key={dropdownItem.id} href={dropdownItem.href}>
                           <span
-                            onClick={() => {
-                              setOpen(false);
-                              setOpenDropDown(null);}
-                            }
-                            className="whitespace-nowrap hover:text-black text-neutral-400"
+                            onClick={() => handleCloseAll()}
+                            className="whitespace-nowrap hover:text-neutral-400 text-black"
                           >
                             {dropdownItem.title}
                           </span>
@@ -165,17 +172,18 @@ const Navbar = ({ userInterface }) => {
                 )}
                 <form action={signOut}>
                   <button
+                 onClick={() => handleCloseAll()}
                     type="submit"
-                    className="text-neutral-400 text-2xl hover:text-black/80"
+                    className="text-black text-2xl hover:text-neutral-400"
                   >
                     Odhlásit
                   </button>
                 </form>
               </div>
             ) : (
-              <button className="text-neutral-400 text-2xl hover:text-black/80 md:hidden block">
+              <button className="text-black text-2xl hover:text-neutral-400 md:hidden block">
                 <Link href={"/login"}>
-                  <span className="">Přihlásit</span>
+                  <span onClick={() => handleCloseAll()}>Přihlásit</span>
                 </Link>
               </button>
             )}
