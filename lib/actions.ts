@@ -5,8 +5,9 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 export async function createAd(formData: FormData) {
-  
+
   const supabase = createClient();
+
   const userId = (await supabase.auth.getUser()).data.user?.id;
 
   const title = formData.get("title");
@@ -39,7 +40,7 @@ export async function createAd(formData: FormData) {
     redirect(`/advertisement/create/${data[0].id}/`);
   }
 
-  if(error){
+  if (error) {
     throw new Error(`Chyba při ukládání dat ${error.message}`);
   }
 }
@@ -47,9 +48,14 @@ export async function createAd(formData: FormData) {
 export async function deleteAd(formData: FormData) {
   const supabase = createClient();
 
+  const userId = (await supabase.auth.getUser()).data.user?.id;
+
   const id = formData.get("id");
 
-  const { data, error } = await supabase.from("TabAdvertisement").delete().eq("id", id);
+  const { data, error } = await supabase.from("TabAdvertisement")
+    .delete()
+    .eq("id", id)
+    .eq("user_id", userId);
 
   if (error) {
     throw new Error(`Chyba při mazání dat ${error.message}`);
@@ -61,6 +67,8 @@ export async function deleteAd(formData: FormData) {
 
 export async function updateAd(formData: FormData) {
   const supabase = createClient();
+
+  const userId = (await supabase.auth.getUser()).data.user?.id;
 
   const id = formData.get("id");
   const title = formData.get("title");
@@ -75,33 +83,39 @@ export async function updateAd(formData: FormData) {
     .from("TabAdvertisement")
     .update({ desc, price, postcode, title, city, category, mobileNumber })
     .eq("id", id)
+    .eq("user_id", userId)
     .select();
 
   if (error) {
     throw new Error(`Chyba při ukládání dat dat ${error.message}`);
-    }
+  }
 
   revalidatePath("/");
 }
 
-export async function deleteAdImages(formData) {
+export async function deleteAdImages(formData: FormData) {
 
   const supabase = createClient();
 
+  const userId = (await supabase.auth.getUser()).data.user?.id;
+
   const id = formData.get("id");
-  const imageUrl = formData.get("imageUrl");
+  const imageUrl = formData.get("imageUrl") as string;
 
   const imageId = imageUrl.split("/").pop()
 
-  const { error } = await supabase.from("TabAdsImages").delete().eq("id", id);
+  const { error } = await supabase.from("TabAdsImages")
+    .delete()
+    .eq("id", id)
 
-  const { data, error: errorBucket } = await supabase.storage
-    .from("adImages")
-    .remove([imageId]);
+  if (imageId) {
+    const { data, error: errorBucket } = await supabase.storage
+      .from("adImages")
+      .remove([imageId]);
 
-  if (error || errorBucket) {
-    throw new Error("Chyba při mazání dat");
+    if (error || errorBucket) {
+      throw new Error("Chyba při mazání dat");
+    }
   }
-
   revalidatePath(`/advertisement/${id}`);
 }
