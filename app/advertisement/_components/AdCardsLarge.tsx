@@ -45,7 +45,7 @@ const AdCardsLarge = ({ adsItems }:{ adsItems: AdProps[]|null }) => {
             </Link>
           </article>
         </div>
-      ))}
+))}
     </div>
   );
 };

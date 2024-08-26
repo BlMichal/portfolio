@@ -16,9 +16,9 @@ export default async function TaskPage() {
   }
 
   return (
-    <section className="bg-peak-background md:min-h-screen-content-md-footer min-h-screen-content-sm-footer flex">
+    <div className="bg-peak-background md:min-h-screen-content-md-footer min-h-screen-content-sm-footer flex">
       <AsideBar />
       <FilteredAdView advertisementData={advertisement} />
-    </section>
+    </div>
   );
 }
