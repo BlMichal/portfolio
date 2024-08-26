@@ -1,18 +1,11 @@
-"use client";
+
 
 import { createClient } from '@/utils/supabase/client';
-import { useRouter } from 'next/navigation';
-import { useEffect, useCallback, useState } from 'react';
+import { redirect } from 'next/navigation';
 import toast from 'react-hot-toast';
 import ImageUpload from '../../_components/ImageUpload';
 
-const UploadAdvertisementImages = ({ params }:{params :{id:string}}) => {
-
-  const router = useRouter();
-
-  const [ifExist, setIfExist] = useState<AdProps | null>(null);
-
-  const CheckIfExist = useCallback(async () => {
+const UploadAdvertisementImages = async({ params }:{params :{id:string}}) => {
 
     const supabase = createClient();
 
@@ -23,23 +16,12 @@ const UploadAdvertisementImages = ({ params }:{params :{id:string}}) => {
       .single();
 
     if (error || !data) {
-      router.replace('/advertisement/create');
-      toast.error(
-        <span className='w-60 h-20 flex items-center'>
-          Tento záznam neexistuje!
-        </span>
-      );
-    }
-    setIfExist(data as AdProps)
-  }, [params.id, router]); 
-
-  useEffect(() => {
-    CheckIfExist();
-  }, [CheckIfExist]);
-
+      redirect('/advertisement/create');
+    }  
+  
   return (
     <section className='flex flex-col items-center min-h-screen-content-sm-footer md:min-h-screen-content-md-footer'>
-       {ifExist ? (
+       {data ? (
         <>
       <h1 className='font-mono text-3xl font-semibold'>Vytvořit inzerát</h1>
       <p className='my-2'>
